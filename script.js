@@ -14,7 +14,6 @@ const initialDisp = 1349.123;
 const forward = document.getElementById('forward');
 const midship = document.getElementById('midship');
 const aft = document.getElementById('aft');
-const qmLine = document.getElementById('qm');
 const fwdLabel = document.getElementById('fwd-label');
 const midLabel = document.getElementById('mid-label');
 const aftLabel = document.getElementById('aft-label');
