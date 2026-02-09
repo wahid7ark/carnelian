@@ -2,31 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carnelian</title>
-
-  <!-- CSS lokal -->
+  <title>TB. ARK DAN / BG CARNELIAN Draft & Cargo</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  
-  <header>
-    <h1>Welcome to Carnelian</h1>
-    <p>A demo website using HTML, CSS & JavaScript.</p>
-  </header>
+  <h2>TB. ARK DAN / BG CARNELIAN - Draft & Cargo Simulation</h2>
 
-  <main>
-    <div class="container">
-      <p id="clock">--:--:--</p>
-      <button id="btn">Click Me!</button>
+  <div class="water">
+    <div class="qm-line" id="qm"></div>
+    <div class="barge" id="barge">
+      <div class="section forward" id="forward"><span id="fwd-label"></span></div>
+      <div class="section midship" id="midship"><span id="mid-label"></span></div>
+      <div class="section aft" id="aft"><span id="aft-label"></span></div>
     </div>
-  </main>
+    <div class="label" style="left:100px;">Forward</div>
+    <div class="label" style="left:230px;">Midship</div>
+    <div class="label" style="left:360px;">Aft</div>
+  </div>
 
-  <footer>
-    <p>&copy; 2026 Wahid</p>
-  </footer>
+  <div class="data-panel">
+    <pre id="data-display"></pre>
+  </div>
 
-  <!-- JS lokal -->
   <script src="script.js"></script>
 </body>
 </html>
