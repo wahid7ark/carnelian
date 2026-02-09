@@ -1,26 +1,22 @@
-// ===== Tombol Interaktif =====
-document.getElementById("btn").addEventListener("click", function() {
-  alert("Hello! Welcome to Carnelian!");
-});
+// script.js - versi baru
 
-// ===== Ganti Background Dinamis =====
-const colors = ["#f8f4f0", "#ffe4e1", "#fff0f5", "#faf0e6"];
-let i = 0;
-
-function changeBackground() {
-  document.body.style.backgroundColor = colors[i];
-  i = (i + 1) % colors.length;
+// Fungsi jam realtime
+function updateClock() {
+    const clockElem = document.getElementById('clock');
+    if (clockElem) {
+        const now = new Date();
+        clockElem.textContent = now.toLocaleTimeString();
+    }
 }
 
-// Ganti background setiap 5 detik
-setInterval(changeBackground, 5000);
+// Jalankan jam setiap detik
+setInterval(updateClock, 1000);
+updateClock(); // tampil langsung saat load
 
-// ===== Simple Clock =====
-function showTime() {
-  const now = new Date();
-  const time = now.toLocaleTimeString();
-  document.getElementById("clock").textContent = time;
+// Tombol interaktif
+const btn = document.getElementById('btn');
+if (btn) {
+    btn.addEventListener('click', () => {
+        alert('Button Clicked!');
+    });
 }
-
-// Update clock setiap detik
-setInterval(showTime, 1000);
