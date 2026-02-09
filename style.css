@@ -1,13 +1,66 @@
-body { font-family: Arial,sans-serif; background:#eef2f5; display:flex; flex-direction:column; align-items:center; margin:0; padding:0; }
-h2 { margin:10px 0; }
+body {
+  font-family: Arial, sans-serif;
+  background: #eef2f5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
 
-.water { width:600px; height:300px; background:#87CEEB; position:relative; border-radius:10px; overflow:hidden; margin-bottom:20px; }
-.waterline { position:absolute; bottom:0; width:100%; height:2px; background:#004080; }
+h2 {
+  margin-bottom: 20px;
+}
 
-.barge { width:400px; height:120px; position:absolute; bottom:50px; left:100px; display:flex; justify-content:center; align-items:flex-end; }
-.barge-body { width:100%; height:100%; background:#666; position:relative; border-radius:5px; overflow:hidden; }
+.water {
+  width: 600px;
+  height: 300px;
+  background: #87CEEB;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
 
-.water-overlay { position:absolute; bottom:0; width:100%; background:rgba(0,100,255,0.6); height:0px; }
+.barge {
+  width: 400px;
+  height: 0px;
+  position: absolute;
+  bottom: 0;
+  left: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
 
-.data-panel { width:600px; background:white; padding:10px; border-radius:10px; box-shadow:0 0 5px rgba(0,0,0,0.3); margin-bottom:20px; }
-.data-panel pre { margin:0; font-family:monospace; }
+.tongkang {
+  width: 100%;
+  height: 0px;
+  background: #555;
+  border-radius: 5px;
+  transform-origin: center bottom;
+  transition: height 1s ease, transform 1s ease;
+}
+
+.data-panel {
+  width: 600px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}
+
+button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  background: #2a7ae2;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1f5bb5;
+}
