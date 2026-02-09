@@ -10,27 +10,25 @@ const observedDensity = 1.015;
 const waterplaneArea = 91*24;
 const coef = 0.75;
 const initialDisp = 1349.123;
+const scale = 50;
 
 const overlayF = document.getElementById('overlay-forward');
 const overlayM = document.getElementById('overlay-midship');
 const overlayA = document.getElementById('overlay-aft');
 const dataDisplay = document.getElementById('data-display');
 
-const scale = 50;
-
 function computeData(draft){
   const meanDraft = (draft.forward + draft.midship + draft.aft)/3;
   const deltaDraft = meanDraft - 0.746;
-  let volume = waterplaneArea * deltaDraft / coef;
-  let cargo = volume * observedDensity;
-  let dispFinal = initialDisp + cargo;
+  const volume = waterplaneArea * deltaDraft / coef;
+  const cargo = volume * observedDensity;
+  const dispFinal = initialDisp + cargo;
   return {meanDraft, deltaDraft, volume, cargo, dispFinal};
 }
 
-let index = 0;
+let index=0;
 function step(){
   if(index >= draftTimeline.length) return;
-
   const d = draftTimeline[index];
 
   overlayF.style.height = d.forward*scale + 'px';
