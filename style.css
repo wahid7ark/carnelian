@@ -20,54 +20,41 @@ h2 { margin:10px 0; }
   margin-bottom:20px;
 }
 
-.barge {
-  width:400px;
+.waterline {
   position:absolute;
   bottom:0;
+  width:100%;
+  height:2px;
+  background:#004080;
+}
+
+.barge {
+  width:400px;
+  height:80px;
+  position:absolute;
+  bottom:50px;
   left:100px;
   display:flex;
   justify-content:space-between;
   align-items:flex-end;
-  transform-origin: center bottom;
-  transition: transform 2s ease;
+  position:relative;
 }
 
-.section {
+.barge > div {
   width:120px;
+  height:100%;
   border-radius:5px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:flex-end;
-  color:white;
-  font-weight:bold;
-  height:0px;
-  transition: height 2s ease, background 2s ease;
+  background:#666;
+  position:relative;
 }
 
-.section.forward { background:#555; }
-.section.midship { background:#666; }
-.section.aft { background:#777; }
-
-.label {
+.water-overlay {
   position:absolute;
-  bottom:-25px;
-  width:120px;
-  text-align:center;
-  color:#000;
-  font-weight:bold;
-}
-
-.qm-line {
-  position:absolute;
-  left:0;
-  width:100%;
-  height:2px;
-  background:red;
   bottom:0;
-  transition: bottom 2s ease;
+  width:120px;
+  background:rgba(0,100,255,0.6);
+  transition: height 1s ease;
 }
-
 .data-panel {
   width:600px;
   background:white;
