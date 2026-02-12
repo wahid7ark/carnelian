@@ -1,11 +1,13 @@
-// ==========================================
-// BG ARK CARNELIAN - FINAL ENGINE STABLE
-// Coder Base: Wahid (ARK DAN)
-// ==========================================
+/* ==========================================
+   BG ARK CARNELIAN - FINAL ENGINE STABLE (FIXED)
+   Coder Base: Wahid (ARK DAN)
+   Debug & Stabilization: ChatGPT Assist
+   ========================================== */
 
 
 // ==============================
 // HYDRO TABLE 0.500–5.000
+// (TIDAK DIUBAH)
 // ==============================
 
 const hydroTable = [
@@ -90,13 +92,17 @@ function trueMean(F,M,A){
 // MAIN CALCULATION
 // ==============================
 
+function get(id){
+    let v = document.getElementById(id).value;
+    if(v === "") throw new Error("empty");
+    return parseFloat(v);
+}
+
 function calculateCargo(){
 
-    function get(id){
-        return parseFloat(document.getElementById(id).value) || 0;
-    }
+try{
 
-    let density = get("density") || 1.025;
+    let density = parseFloat(document.getElementById("density").value) || 1.025;
 
     // INITIAL
     let iF = mean(get("i_fp"), get("i_fs"));
@@ -119,14 +125,11 @@ function calculateCargo(){
         return;
     }
 
-    // Density correction BOTH
+    // Density correction
     let correctedInitial = initialDisp * (density / 1.025);
     let correctedFinal   = finalDisp   * (density / 1.025);
 
     let netCargo = correctedFinal - correctedInitial;
-
-    // Auto-fill initial displacement field
-    document.getElementById("initialDisp").value = correctedInitial.toFixed(2);
 
     document.getElementById("output").innerHTML = `
     INITIAL SURVEY<br>
@@ -139,4 +142,20 @@ function calculateCargo(){
 
     <strong>NET CARGO : ${netCargo.toFixed(2)} MT</strong>
     `;
+
+}catch(err){
+    document.getElementById("output").innerHTML =
+    "Please fill ALL draft readings first.";
 }
+
+}
+
+
+// ==============================
+// BUTTON ACTIVATOR (PENTING)
+// ==============================
+
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("calcBtn")
+    .addEventListener("click", calculateCargo);
+});
