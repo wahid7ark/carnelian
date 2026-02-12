@@ -3,43 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BG ARK CARNELIAN - Draft Survey</title>
+<title>BG ARK CARNELIAN - Draft Survey System</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="overlay"></div>
+
 <div class="container">
-<h1>BG ARK CARNELIAN</h1>
-<h2>Draft Survey Calculator</h2>
 
-<div class="section">
-<h3>Initial Draft</h3>
-<input id="i_fp" placeholder="Fwd Port">
-<input id="i_fs" placeholder="Fwd Stbd">
-<input id="i_mp" placeholder="Mid Port">
-<input id="i_ms" placeholder="Mid Stbd">
-<input id="i_ap" placeholder="Aft Port">
-<input id="i_as" placeholder="Aft Stbd">
-</div>
+<header>
+    <h1>BG ARK CARNELIAN</h1>
+    <h3>Professional Draft Survey System</h3>
+    <p>Coder: Wahid (ARK DAN)</p>
+</header>
 
-<div class="section">
-<h3>Final Draft</h3>
-<input id="f_fp" placeholder="Fwd Port">
-<input id="f_fs" placeholder="Fwd Stbd">
-<input id="f_mp" placeholder="Mid Port">
-<input id="f_ms" placeholder="Mid Stbd">
-<input id="f_ap" placeholder="Aft Port">
-<input id="f_as" placeholder="Aft Stbd">
-</div>
+<section class="photo">
+    <img src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/1770848760316.jpg" alt="BG ARK CARNELIAN">
+</section>
 
-<div class="section">
-<h3>Water Density</h3>
-<input id="density" placeholder="Default 1.025">
-</div>
+<audio autoplay loop>
+  <source src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/HARRY_PARINTANG_-_ADA_RINDU__NEW_SINGLE_2021_(251).mp3" type="audio/mpeg">
+</audio>
 
-<button onclick="calculate()">CALCULATE</button>
+<section class="survey">
+<h2>INITIAL SURVEY</h2>
 
-<pre id="output"></pre>
+<label>Forward Port</label><input type="number" id="i_fp" step="0.001">
+<label>Forward Starboard</label><input type="number" id="i_fs" step="0.001">
+
+<label>Mid Port</label><input type="number" id="i_mp" step="0.001">
+<label>Mid Starboard</label><input type="number" id="i_ms" step="0.001">
+
+<label>Aft Port</label><input type="number" id="i_ap" step="0.001">
+<label>Aft Starboard</label><input type="number" id="i_as" step="0.001">
+
+<label>Initial Displacement (MT)</label>
+<input type="number" id="initialDisp" step="0.001">
+
+</section>
+
+<section class="survey">
+<h2>FINAL SURVEY</h2>
+
+<label>Forward Port</label><input type="number" id="f_fp" step="0.001">
+<label>Forward Starboard</label><input type="number" id="f_fs" step="0.001">
+
+<label>Mid Port</label><input type="number" id="f_mp" step="0.001">
+<label>Mid Starboard</label><input type="number" id="f_ms" step="0.001">
+
+<label>Aft Port</label><input type="number" id="f_ap" step="0.001">
+<label>Aft Starboard</label><input type="number" id="f_as" step="0.001">
+
+</section>
+
+<section class="constants">
+<h2>CONSTANTS</h2>
+
+<label>Waterplane Area (m²)</label>
+<input type="number" id="waterplane" value="2184">
+
+<label>Form Coefficient</label>
+<input type="number" id="coef" value="0.75" step="0.01">
+
+<label>Observed Density</label>
+<input type="number" id="density" value="1.025" step="0.001">
+
+</section>
+
+<button onclick="calculateCargo()">CALCULATE CARGO</button>
+
+<section class="results">
+<h2>RESULTS</h2>
+<div id="output"></div>
+</section>
 
 </div>
 
