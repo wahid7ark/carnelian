@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Redirect semua HTTP ke HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://wahid7ark.github.io/$1 [R=301,L]
+
+# Redirect www ke non-www (opsional, hapus jika tidak pakai www)
+RewriteCond %{HTTP_HOST} ^www\.wahid7ark\.github\.io [NC]
+RewriteRule ^(.*)$ https://wahid7ark.github.io/$1 [R=301,L]
