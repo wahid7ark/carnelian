@@ -1,128 +1,196 @@
-* {
+*{
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Segoe UI, sans-serif;
 }
 
-body {
+body{
 background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
 color:#fff;
 min-height:100vh;
+overflow-x:hidden;
 }
 
-.overlay {
+.overlay{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.6);
+background:rgba(0,0,0,0.65);
 z-index:-1;
 }
 
-.container {
-max-width:1000px;
+.container{
+max-width:1100px;
 margin:auto;
-padding:30px;
+padding:40px 25px;
 }
 
-header {
+/* ================= HEADER ================= */
+
+header{
 text-align:center;
-margin-bottom:30px;
+margin-bottom:40px;
 }
 
-header h1 {
-font-size:36px;
-letter-spacing:2px;
+header h1{
+font-size:38px;
+letter-spacing:3px;
 color:#4db8ff;
+text-shadow:0 0 15px rgba(77,184,255,0.5);
 }
 
-header h3 {
-margin-top:10px;
+header h3{
+margin-top:12px;
 font-weight:300;
 color:#ccc;
 }
 
-header p {
-margin-top:5px;
+header p{
+margin-top:6px;
 font-size:14px;
 color:#aaa;
 }
 
-.photo {
+/* ================= PHOTO ================= */
+
+.photo{
 text-align:center;
-margin-bottom:30px;
+margin-bottom:35px;
 }
 
-.photo img {
+.photo img{
 width:100%;
-max-height:350px;
+max-height:380px;
 object-fit:cover;
-border-radius:12px;
-box-shadow:0 0 25px rgba(0,0,0,0.6);
+border-radius:14px;
+box-shadow:0 0 30px rgba(0,0,0,0.7);
+transition:0.4s;
 }
 
-section {
-background:rgba(255,255,255,0.05);
-padding:20px;
-margin-bottom:20px;
-border-radius:12px;
-backdrop-filter:blur(10px);
-}
-
-section h2 {
-margin-bottom:15px;
-color:#4db8ff;
-}
-
-label {
-display:block;
-margin-top:10px;
-font-size:14px;
-color:#ccc;
-}
-
-input {
-width:100%;
-padding:8px;
-margin-top:4px;
-border:none;
-border-radius:6px;
-background:#1e2a33;
-color:#fff;
-}
-
-input:focus {
-outline:none;
-background:#243845;
-}
-
-button {
-width:100%;
-padding:14px;
-font-size:16px;
-background:#4db8ff;
-border:none;
-border-radius:8px;
-cursor:pointer;
-transition:0.3s;
-font-weight:bold;
-}
-
-button:hover {
-background:#3399dd;
+.photo img:hover{
 transform:scale(1.02);
 }
 
-.results {
+/* ================= SECTION ================= */
+
+section{
+background:rgba(255,255,255,0.05);
+padding:25px;
+margin-bottom:25px;
+border-radius:14px;
+backdrop-filter:blur(12px);
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+animation:fadeIn 0.8s ease;
+}
+
+section h2{
+margin-bottom:18px;
+color:#4db8ff;
+border-bottom:1px solid rgba(77,184,255,0.4);
+padding-bottom:6px;
+}
+
+/* ================= GRID LAYOUT ================= */
+
+.survey{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px 25px;
+}
+
+.constants{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+/* ================= FORM ================= */
+
+label{
+font-size:13px;
+color:#bbb;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:4px;
+border:none;
+border-radius:8px;
+background:#1e2a33;
+color:#fff;
+transition:0.3s;
+}
+
+input:focus{
+outline:none;
+background:#243845;
+box-shadow:0 0 10px rgba(77,184,255,0.4);
+}
+
+/* ================= BUTTON ================= */
+
+button{
+width:100%;
+padding:15px;
+font-size:17px;
+background:#4db8ff;
+border:none;
+border-radius:10px;
+cursor:pointer;
+transition:0.3s;
+font-weight:bold;
+letter-spacing:1px;
+box-shadow:0 0 15px rgba(77,184,255,0.5);
+}
+
+button:hover{
+background:#3399dd;
+transform:translateY(-2px);
+box-shadow:0 0 25px rgba(77,184,255,0.8);
+}
+
+/* ================= RESULTS ================= */
+
+.results{
 text-align:center;
 }
 
-#output {
-margin-top:15px;
+#output{
+margin-top:18px;
 background:#000;
-padding:15px;
-border-radius:8px;
-line-height:1.6;
+padding:20px;
+border-radius:10px;
+line-height:1.8;
+font-size:15px;
+box-shadow:0 0 15px rgba(0,0,0,0.6);
+}
+
+#output strong{
+font-size:20px;
+color:#4db8ff;
+display:block;
+margin-top:10px;
+text-shadow:0 0 10px rgba(77,184,255,0.6);
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+.survey{
+grid-template-columns:1fr;
+}
+.constants{
+grid-template-columns:1fr;
+}
 }
