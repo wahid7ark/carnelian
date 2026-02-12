@@ -1,101 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>BG ARK CARNELIAN - Draft Survey System</title>
-<link rel="stylesheet" href="style.css">
-</head>
+body {
+background:#111;
+color:#eee;
+font-family:Arial;
+margin:0;
+padding:0;
+}
 
-<body>
+.container {
+max-width:800px;
+margin:auto;
+padding:20px;
+}
 
-<div class="container">
+h1 {
+text-align:center;
+color:#4da6ff;
+}
 
-<header>
-  <h1>BG ARK CARNELIAN</h1>
-  <p>Professional Draft Survey System</p>
-  <small>Coder: Wahid (ARK DAN)</small>
-</header>
+.section {
+margin-bottom:20px;
+padding:15px;
+background:#1a1a1a;
+border-radius:8px;
+}
 
-<section class="photo-section">
-  <img src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/refs/heads/main/1770848760316.jpg">
-</section>
+input {
+width:120px;
+margin:5px;
+padding:6px;
+background:#222;
+color:#fff;
+border:1px solid #333;
+border-radius:4px;
+}
 
-<audio autoplay loop>
-  <source src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/HARRY_PARINTANG_-_ADA_RINDU__NEW_SINGLE_2021_(251).mp3" type="audio/mpeg">
-</audio>
+button {
+padding:10px 20px;
+background:#4da6ff;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-weight:bold;
+}
 
-<section>
-  <h2>Select Mode</h2>
-  <select id="mode" onchange="switchMode()">
-    <option value="surveyor">Surveyor Mode</option>
-    <option value="full">Full Observation Mode</option>
-  </select>
-</section>
+button:hover {
+background:#3399ff;
+}
 
-<section>
-  <h2>Hydrostatic Type</h2>
-  <select id="hydroType">
-    <option value="moulded">Moulded</option>
-    <option value="extreme">Extreme</option>
-  </select>
-</section>
-
-<!-- INITIAL -->
-<section>
-  <h2>Initial Survey</h2>
-
-  <div id="quickInitial">
-    F <input type="number" id="i_fwd">
-    M <input type="number" id="i_mid">
-    A <input type="number" id="i_aft">
-  </div>
-
-  <div id="fullInitial" style="display:none;">
-    FP <input type="number" id="i_fp">
-    FS <input type="number" id="i_fs">
-    MP <input type="number" id="i_mp">
-    MS <input type="number" id="i_ms">
-    AP <input type="number" id="i_ap">
-    AS <input type="number" id="i_as">
-  </div>
-
-  Density <input type="number" id="i_density" value="1.025" step="0.001">
-</section>
-
-<!-- FINAL -->
-<section>
-  <h2>Final Survey</h2>
-
-  <div id="quickFinal">
-    F <input type="number" id="f_fwd">
-    M <input type="number" id="f_mid">
-    A <input type="number" id="f_aft">
-  </div>
-
-  <div id="fullFinal" style="display:none;">
-    FP <input type="number" id="f_fp">
-    FS <input type="number" id="f_fs">
-    MP <input type="number" id="f_mp">
-    MS <input type="number" id="f_ms">
-    AP <input type="number" id="f_ap">
-    AS <input type="number" id="f_as">
-  </div>
-
-  Density <input type="number" id="f_density" value="1.025" step="0.001">
-</section>
-
-<button onclick="calculate()">CALCULATE CARGO</button>
-
-<section class="result">
-  <h2>Results</h2>
-  <p>Initial Disp Corr: <span id="resInitial">-</span></p>
-  <p>Final Disp Corr: <span id="resFinal">-</span></p>
-  <hr>
-  <h3>CARGO: <span id="resCargo">-</span> MT</h3>
-</section>
-
-</div>
-
-<script src="script.js"></script>
-</body>
-</html>
+pre {
+background:#000;
+padding:15px;
+border-radius:8px;
+margin-top:20px;
+white-space:pre-wrap;
+}
