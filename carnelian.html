@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BG ARK CARNELIAN - Draft Survey System</title>
+<style>
+/* ==========================================
+   BG ARK CARNELIAN
+   MOBILE FIRST SURVEY UI (LOCKED)
+========================================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI, Arial, sans-serif;
+}
+
+/* ================= BODY ================= */
+body{
+background:#0e1a22;
+color:#fff;
+}
+.overlay{
+display:none;
+}
+.container{
+max-width:720px;
+margin:auto;
+padding:14px;
+}
+
+/* ================= HEADER ================= */
+header{
+text-align:center;
+margin-bottom:18px;
+}
+header h1{
+font-size:26px;
+letter-spacing:1px;
+color:#4db8ff;
+}
+header h3{
+font-size:14px;
+font-weight:400;
+color:#cfd8dc;
+margin-top:4px;
+}
+header p{
+font-size:12px;
+color:#90a4ae;
+}
+
+/* ================= PHOTO ================= */
+.photo img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+margin-bottom:12px;
+}
+
+/* ================= SECTION CARD ================= */
+section{
+background:#162630;
+padding:14px;
+margin-bottom:14px;
+border-radius:12px;
+box-shadow:0 4px 14px rgba(0,0,0,0.35);
+}
+section h2{
+font-size:18px;
+margin-bottom:12px;
+color:#4db8ff;
+}
+
+/* ================= SURVEY GRID ================= */
+.survey-section .form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
+@media(max-width:480px){
+.survey-section .form-grid{
+grid-template-columns:1fr;
+}
+}
+
+/* ================= FORM ================= */
+.form-row{
+display:flex;
+flex-direction:column;
+}
+label{
+font-size:12px;
+color:#b0bec5;
+margin-bottom:4px;
+}
+input{
+width:100%;
+padding:14px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#0f1d25;
+color:#fff;
+}
+input:focus{
+outline:none;
+background:#122a36;
+box-shadow:0 0 0 2px #4db8ff;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+-webkit-appearance:none;
+margin:0;
+}
+
+/* ================= CONSTANTS ================= */
+.constants-section .constants-grid{
+display:grid;
+grid-template-columns:1fr;
+gap:10px;
+}
+
+/* ================= BUTTON ================= */
+button{
+width:100%;
+padding:18px;
+margin-top:10px;
+font-size:20px;
+font-weight:bold;
+background:#2fa4ff;
+border:none;
+border-radius:12px;
+color:#fff;
+letter-spacing:1px;
+}
+button:active{
+transform:scale(0.97);
+background:#1d8fe0;
+}
+
+/* ================= RESULTS ================= */
+.results{
+text-align:center;
+}
+#output{
+margin-top:12px;
+background:#000;
+padding:16px;
+border-radius:12px;
+font-size:16px;
+line-height:1.7;
+}
+#output strong{
+font-size:22px;
+color:#4db8ff;
+display:block;
+margin-top:12px;
+}
+
+/* ================= DESKTOP (BONUS) */
+@media(min-width:900px){
+.container{
+max-width:900px;
+}
+.photo img{
+height:260px;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<header>
+    <h1>BG ARK CARNELIAN</h1>
+    <h3>Professional Draft Survey System</h3>
+    <p>Coder: Wahid (ARK DAN)</p>
+</header>
+
+<section class="photo">
+    <img src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/1770848760316.jpg" alt="BG ARK CARNELIAN">
+</section>
+
+<audio autoplay loop>
+  <source src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/HARRY_PARINTANG_-_ADA_RINDU__NEW_SINGLE_2021_(251).mp3" type="audio/mpeg">
+</audio>
+
+<!-- ================= INITIAL SURVEY ================= -->
+<section class="survey-section">
+<h2>INITIAL SURVEY</h2>
+<div class="form-grid">
+
+<div class="form-row">
+<label for="i_fp">Forward Port</label>
+<input type="number" id="i_fp" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="i_fs">Forward Starboard</label>
+<input type="number" id="i_fs" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="i_mp">Mid Port</label>
+<input type="number" id="i_mp" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="i_ms">Mid Starboard</label>
+<input type="number" id="i_ms" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="i_ap">Aft Port</label>
+<input type="number" id="i_ap" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="i_as">Aft Starboard</label>
+<input type="number" id="i_as" step="0.001">
+</div>
+
+</div>
+<p class="note">Initial Displacement will be calculated automatically from hydrostatic table.</p>
+</section>
+
+<!-- ================= FINAL SURVEY ================= -->
+<section class="survey-section">
+<h2>FINAL SURVEY</h2>
+<div class="form-grid">
+
+<div class="form-row">
+<label for="f_fp">Forward Port</label>
+<input type="number" id="f_fp" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="f_fs">Forward Starboard</label>
+<input type="number" id="f_fs" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="f_mp">Mid Port</label>
+<input type="number" id="f_mp" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="f_ms">Mid Starboard</label>
+<input type="number" id="f_ms" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="f_ap">Aft Port</label>
+<input type="number" id="f_ap" step="0.001">
+</div>
+
+<div class="form-row">
+<label for="f_as">Aft Starboard</label>
+<input type="number" id="f_as" step="0.001">
+</div>
+
+</div>
+</section>
+
+<!-- ================= CONSTANTS ================= -->
+<section class="constants-section">
+<h2>CONSTANTS</h2>
+<div class="constants-grid">
+
+<div class="form-row">
+<label for="waterplane">Waterplane Area (m²)</label>
+<input type="number" id="waterplane" value="2184">
+</div>
+
+<div class="form-row">
+<label for="coef">Form Coefficient</label>
+<input type="number" id="coef" value="0.75" step="0.01">
+</div>
+
+<div class="form-row">
+<label for="density">Observed Density</label>
+<input type="number" id="density" value="1.025" step="0.001">
+</div>
+
+</div>
+</section>
+
+<button id="calcBtn" type="button">CALCULATE CARGO</button>
+
+<section class="results">
+<h2>RESULTS</h2>
+<div id="output"></div>
+</section>
+
+<script>
+// ==============================
+// HYDRO TABLE
+// ==============================
+const hydroTable = [
+{draft:0.500,disp:965.33},{draft:0.550,disp:1051.62},
+{draft:0.600,disp:1138.47},{draft:0.650,disp:1225.88},
+{draft:0.700,disp:1313.86},{draft:0.750,disp:1402.40},
+{draft:0.800,disp:1491.50},{draft:0.850,disp:1581.17},
+{draft:0.900,disp:1671.40},{draft:0.950,disp:1762.20},
+{draft:1.000,disp:1853.56},{draft:1.050,disp:1945.49},
+{draft:1.100,disp:2037.98},{draft:1.150,disp:2131.03},
+{draft:1.200,disp:2224.65},{draft:1.250,disp:2318.83},
+{draft:1.300,disp:2413.57},{draft:1.350,disp:2508.88},
+{draft:1.400,disp:2604.75},{draft:1.450,disp:2701.19},
+{draft:1.500,disp:2798.19},{draft:1.550,disp:2895.76},
+{draft:1.600,disp:2993.89},{draft:1.650,disp:3092.59},
+{draft:1.700,disp:3191.85},{draft:1.750,disp:3291.68},
+{draft:1.800,disp:3392.07},{draft:1.850,disp:3493.03},
+{draft:1.900,disp:3594.55},{draft:1.950,disp:3696.64},
+{draft:2.000,disp:3799.29},{draft:2.050,disp:3902.51},
+{draft:2.100,disp:4006.29},{draft:2.150,disp:4110.64},
+{draft:2.200,disp:4215.55},{draft:2.250,disp:4321.03},
+{draft:2.300,disp:4427.07},{draft:2.350,disp:4533.68},
+{draft:2.400,disp:4640.86},{draft:2.450,disp:4748.60},
+{draft:2.500,disp:4856.91},{draft:2.550,disp:4965.79},
+{draft:2.600,disp:5075.23},{draft:2.650,disp:5185.24},
+{draft:2.700,disp:5295.81},{draft:2.750,disp:5406.95},
+{draft:2.800,disp:5518.65},{draft:2.850,disp:5630.92},
+{draft:2.900,disp:5743.76},{draft:2.950,disp:5857.16},
+{draft:3.000,disp:5954.66},{draft:3.050,disp:6061.65},
+{draft:3.100,disp:6168.86},{draft:3.150,disp:6276.27},
+{draft:3.200,disp:6383.89},{draft:3.250,disp:6491.73},
+{draft:3.300,disp:6599.78},{draft:3.350,disp:6703.02},
+{draft:3.400,disp:6815.44},{draft:3.450,disp:6925.07},
+{draft:3.500,disp:7033.90},{draft:3.550,disp:7142.93},
+{draft:3.600,disp:7252.17},{draft:3.650,disp:7361.62},
+{draft:3.700,disp:7471.28},{draft:3.750,disp:7581.14},
+{draft:3.800,disp:7691.22},{draft:3.850,disp:7802.51},
+{draft:3.900,disp:7912.02},{draft:3.950,disp:8022.73},
+{draft:4.000,disp:8133.66},{draft:4.050,disp:8244.68},
+{draft:4.100,disp:8355.75},{draft:4.150,disp:8466.85},
+{draft:4.200,disp:8577.98},{draft:4.250,disp:8689.17},
+{draft:4.300,disp:8800.40},{draft:4.350,disp:8911.67},
+{draft:4.400,disp:9022.97},{draft:4.450,disp:9134.32},
+{draft:4.500,disp:9245.71},{draft:4.550,disp:9357.15},
+{draft:4.600,disp:9468.63},{draft:4.650,disp:9579.75},
+{draft:4.700,disp:9690.86},{draft:4.750,disp:9801.98},
+{draft:4.800,disp:9913.10},{draft:4.850,disp:10024.22},
+{draft:4.900,disp:10135.34},{draft:4.950,disp:10246.45},
+{draft:5.000,disp:10357.59}
+];
+
+// ==============================
+// FUNCTIONS
+// ==============================
+function interpolate(draft){
+if(isNaN(draft)) return null;
+if(draft<0.5||draft>5.0) return null;
+for(let i=0;i<hydroTable.length-1;i++){
+let d1=hydroTable[i],d2=hydroTable[i+1];
+if(draft>=d1.draft&&draft<=d2.draft){
+let ratio=(draft-d1.draft)/(d2.draft-d1.draft);
+return d1.disp+ratio*(d2.disp-d1.disp);
+}}
+return null;
+}
+function mean(a,b){return(a+b)/2;}
+function trueMean(F,M,A){return(((F+A)/2)+((F+M+A)/3))/2;}
+function get(id){
+const el=document.getElementById(id);
+if(!el)throw new Error("missing");
+let v=el.value.trim();
+if(v==="")throw new Error("empty");
+let n=parseFloat(v);
+if(isNaN(n))throw new Error("nan");
+return n;
+}
+
+// ==============================
+// MAIN
+// ==============================
+function calculateCargo(){
+const out=document.getElementById("output");
+try{
+let density=parseFloat(document.getElementById("density").value)||1.025;
+// initial
+let iF=mean(get("i_fp"),get("i_fs"));
+let iM=mean(get("i_mp"),get("i_ms"));
+let iA=mean(get("i_ap"),get("i_as"));
+let iMean=trueMean(iF,iM,iA);
+// final
+let fF=mean(get("f_fp"),get("f_fs"));
+let fM=mean(get("f_mp"),get("f_ms"));
+let fA=mean(get("f_ap"),get("f_as"));
+let fMean=trueMean(fF,fM,fA);
+
+let initDisp=interpolate(iMean);
+let finalDisp=interpolate(fMean);
+if(initDisp===null||finalDisp===null){
+out.innerHTML="Draft outside hydro table range (0.500 – 5.000 m)";
+return;
+}
+
+let corrInit=initDisp*(density/1.025);
+let corrFinal=finalDisp*(density/1.025);
+let cargo=corrFinal-corrInit;
+
+out.innerHTML=`
+INITIAL SURVEY<br>
+Mean Draft : ${iMean.toFixed(4)} m<br>
+Displacement : ${corrInit.toFixed(2)} MT<br><br>
+FINAL SURVEY<br>
+Mean Draft : ${fMean.toFixed(4)} m<br>
+Displacement : ${corrFinal.toFixed(2)} MT<br><br>
+<strong>NET CARGO : ${cargo.toFixed(2)} MT</strong>
+`;
+}catch{
+out.innerHTML="Please fill ALL draft readings correctly.";
+}
+}
+
+// ==============================
+// BUTTON BINDING
+// ==============================
+window.addEventListener("load",function(){
+const btn=document.getElementById("calcBtn");
+if(btn) btn.addEventListener("click",calculateCargo);
+});
+</script>
+
+</body>
+</html>
