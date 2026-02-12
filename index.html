@@ -26,26 +26,39 @@
   <source src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/HARRY_PARINTANG_-_ADA_RINDU__NEW_SINGLE_2021_(251).mp3" type="audio/mpeg">
 </audio>
 
+<!-- ================= INITIAL SURVEY ================= -->
 <section class="survey">
 <h2>INITIAL SURVEY</h2>
 
-<label>Forward Port</label>
+<div class="form-row">
+<label for="i_fp">Forward Port</label>
 <input type="number" id="i_fp" step="0.001">
+</div>
 
-<label>Forward Starboard</label>
+<div class="form-row">
+<label for="i_fs">Forward Starboard</label>
 <input type="number" id="i_fs" step="0.001">
+</div>
 
-<label>Mid Port</label>
+<div class="form-row">
+<label for="i_mp">Mid Port</label>
 <input type="number" id="i_mp" step="0.001">
+</div>
 
-<label>Mid Starboard</label>
+<div class="form-row">
+<label for="i_ms">Mid Starboard</label>
 <input type="number" id="i_ms" step="0.001">
+</div>
 
-<label>Aft Port</label>
+<div class="form-row">
+<label for="i_ap">Aft Port</label>
 <input type="number" id="i_ap" step="0.001">
+</div>
 
-<label>Aft Starboard</label>
+<div class="form-row">
+<label for="i_as">Aft Starboard</label>
 <input type="number" id="i_as" step="0.001">
+</div>
 
 <p style="margin-top:10px; font-size:13px; color:#aaa;">
 Initial Displacement will be calculated automatically from hydrostatic table.
@@ -53,44 +66,64 @@ Initial Displacement will be calculated automatically from hydrostatic table.
 
 </section>
 
+<!-- ================= FINAL SURVEY ================= -->
 <section class="survey">
 <h2>FINAL SURVEY</h2>
 
-<label>Forward Port</label>
+<div class="form-row">
+<label for="f_fp">Forward Port</label>
 <input type="number" id="f_fp" step="0.001">
+</div>
 
-<label>Forward Starboard</label>
+<div class="form-row">
+<label for="f_fs">Forward Starboard</label>
 <input type="number" id="f_fs" step="0.001">
+</div>
 
-<label>Mid Port</label>
+<div class="form-row">
+<label for="f_mp">Mid Port</label>
 <input type="number" id="f_mp" step="0.001">
+</div>
 
-<label>Mid Starboard</label>
+<div class="form-row">
+<label for="f_ms">Mid Starboard</label>
 <input type="number" id="f_ms" step="0.001">
+</div>
 
-<label>Aft Port</label>
+<div class="form-row">
+<label for="f_ap">Aft Port</label>
 <input type="number" id="f_ap" step="0.001">
+</div>
 
-<label>Aft Starboard</label>
+<div class="form-row">
+<label for="f_as">Aft Starboard</label>
 <input type="number" id="f_as" step="0.001">
+</div>
 
 </section>
 
+<!-- ================= CONSTANTS ================= -->
 <section class="constants">
 <h2>CONSTANTS</h2>
 
-<label>Waterplane Area (m²)</label>
+<div class="form-row">
+<label for="waterplane">Waterplane Area (m²)</label>
 <input type="number" id="waterplane" value="2184">
+</div>
 
-<label>Form Coefficient</label>
+<div class="form-row">
+<label for="coef">Form Coefficient</label>
 <input type="number" id="coef" value="0.75" step="0.01">
+</div>
 
-<label>Observed Density</label>
+<div class="form-row">
+<label for="density">Observed Density</label>
 <input type="number" id="density" value="1.025" step="0.001">
+</div>
 
 </section>
 
-<button onclick="calculateCargo()">CALCULATE CARGO</button>
+<button id="calcBtn" type="button">CALCULATE CARGO</button>
 
 <section class="results">
 <h2>RESULTS</h2>
