@@ -1,13 +1,12 @@
 /* ==========================================
-   BG ARK CARNELIAN - FINAL ENGINE STABLE (FIXED)
-   Coder Base: Wahid (ARK DAN)
-   Debug & Stabilization: ChatGPT Assist
-   ========================================== */
-
+BG ARK CARNELIAN - FINAL ENGINE STABLE (ULTRA STABLE)
+Coder Base: Wahid (ARK DAN)
+Stabilization & Field Reliability Fix
+========================================== */
 
 // ==============================
 // HYDRO TABLE 0.500–5.000
-// (TIDAK DIUBAH)
+// (TIDAK DIUBAH SAMA SEKALI)
 // ==============================
 
 const hydroTable = [
@@ -59,103 +58,125 @@ const hydroTable = [
 {draft:5.000,disp:10357.59}
 ];
 
-
 // ==============================
 // CORE FUNCTIONS
 // ==============================
 
 function interpolate(draft){
-    if(draft < 0.5 || draft > 5.0) return null;
+if(isNaN(draft)) return null;
+if(draft < 0.5 || draft > 5.0) return null;
 
-    for(let i=0;i<hydroTable.length-1;i++){
-        let d1 = hydroTable[i];
-        let d2 = hydroTable[i+1];
+for(let i=0;i<hydroTable.length-1;i++){
+    let d1 = hydroTable[i];
+    let d2 = hydroTable[i+1];
 
-        if(draft >= d1.draft && draft <= d2.draft){
-            let ratio = (draft - d1.draft) / (d2.draft - d1.draft);
-            return d1.disp + ratio * (d2.disp - d1.disp);
-        }
+    if(draft >= d1.draft && draft <= d2.draft){
+        let ratio = (draft - d1.draft) / (d2.draft - d1.draft);
+        return d1.disp + ratio * (d2.disp - d1.disp);
     }
-    return null;
+}
+return null;
+
 }
 
 function mean(a,b){ return (a+b)/2; }
 
 function trueMean(F,M,A){
-    let quarter = (F + A)/2;
-    let simple = (F + M + A)/3;
-    return (quarter + simple)/2;
+let quarter = (F + A)/2;
+let simple = (F + M + A)/3;
+return (quarter + simple)/2;
 }
 
+// ==============================
+// SAFE INPUT READER
+// ==============================
+
+function get(id){
+const el = document.getElementById(id);
+if(!el) throw new Error("Missing field: " + id);
+
+let v = el.value.trim();
+if(v === "") throw new Error("Empty field");
+
+let num = parseFloat(v);
+if(isNaN(num)) throw new Error("Invalid number");
+
+return num;
+
+}
 
 // ==============================
 // MAIN CALCULATION
 // ==============================
 
-function get(id){
-    let v = document.getElementById(id).value;
-    if(v === "") throw new Error("empty");
-    return parseFloat(v);
-}
-
 function calculateCargo(){
 
 try{
 
-    let density = parseFloat(document.getElementById("density").value) || 1.025;
+let densityField = document.getElementById("density");
+let density = densityField ? (parseFloat(densityField.value) || 1.025) : 1.025;
 
-    // INITIAL
-    let iF = mean(get("i_fp"), get("i_fs"));
-    let iM = mean(get("i_mp"), get("i_ms"));
-    let iA = mean(get("i_ap"), get("i_as"));
-    let iMean = trueMean(iF, iM, iA);
+// INITIAL
+let iF = mean(get("i_fp"), get("i_fs"));
+let iM = mean(get("i_mp"), get("i_ms"));
+let iA = mean(get("i_ap"), get("i_as"));
+let iMean = trueMean(iF, iM, iA);
 
-    // FINAL
-    let fF = mean(get("f_fp"), get("f_fs"));
-    let fM = mean(get("f_mp"), get("f_ms"));
-    let fA = mean(get("f_ap"), get("f_as"));
-    let fMean = trueMean(fF, fM, fA);
+// FINAL
+let fF = mean(get("f_fp"), get("f_fs"));
+let fM = mean(get("f_mp"), get("f_ms"));
+let fA = mean(get("f_ap"), get("f_as"));
+let fMean = trueMean(fF, fM, fA);
 
-    let initialDisp = interpolate(iMean);
-    let finalDisp   = interpolate(fMean);
+let initialDisp = interpolate(iMean);
+let finalDisp   = interpolate(fMean);
 
-    if(initialDisp === null || finalDisp === null){
-        document.getElementById("output").innerHTML =
-        "Draft outside hydro table range (0.500 – 5.000 m)";
-        return;
-    }
+if(initialDisp === null || finalDisp === null){
+    document.getElementById("output").innerHTML =
+    "Draft outside hydro table range (0.500 – 5.000 m)";
+    return;
+}
 
-    // Density correction
-    let correctedInitial = initialDisp * (density / 1.025);
-    let correctedFinal   = finalDisp   * (density / 1.025);
+// Density correction
+let correctedInitial = initialDisp * (density / 1.025);
+let correctedFinal   = finalDisp   * (density / 1.025);
 
-    let netCargo = correctedFinal - correctedInitial;
+let netCargo = correctedFinal - correctedInitial;
 
-    document.getElementById("output").innerHTML = `
-    INITIAL SURVEY<br>
-    Mean Draft : ${iMean.toFixed(4)} m<br>
-    Displacement (Corrected) : ${correctedInitial.toFixed(2)} MT<br><br>
+document.getElementById("output").innerHTML = `
+INITIAL SURVEY<br>
+Mean Draft : ${iMean.toFixed(4)} m<br>
+Displacement (Corrected) : ${correctedInitial.toFixed(2)} MT<br><br>
 
-    FINAL SURVEY<br>
-    Mean Draft : ${fMean.toFixed(4)} m<br>
-    Displacement (Corrected) : ${correctedFinal.toFixed(2)} MT<br><br>
+FINAL SURVEY<br>
+Mean Draft : ${fMean.toFixed(4)} m<br>
+Displacement (Corrected) : ${correctedFinal.toFixed(2)} MT<br><br>
 
-    <strong>NET CARGO : ${netCargo.toFixed(2)} MT</strong>
-    `;
+<strong>NET CARGO : ${netCargo.toFixed(2)} MT</strong>
+`;
 
 }catch(err){
-    document.getElementById("output").innerHTML =
-    "Please fill ALL draft readings first.";
+document.getElementById("output").innerHTML =
+"Please fill ALL draft readings correctly.";
 }
 
 }
-
 
 // ==============================
-// BUTTON ACTIVATOR (PENTING)
+// BUTTON ACTIVATOR (ANTI ERROR)
 // ==============================
 
 document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("calcBtn")
-    .addEventListener("click", calculateCargo);
+
+// cari semua tombol
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach(btn=>{
+    const text = btn.textContent.toLowerCase();
+
+    if(text.includes("calc") || text.includes("hitung")){
+        btn.addEventListener("click", calculateCargo);
+    }
+});
+
 });
