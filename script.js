@@ -60,29 +60,35 @@ const hydroTable = [
 // ==============================
 
 function interpolate(draft){
-if(isNaN(draft)) return null;
-if(draft < 0.5 || draft > 5.0) return null;
+    if(isNaN(draft)) return null;
+    if(draft < 0.5 || draft > 5.0) return null;
 
-for(let i=0;i<hydroTable.length-1;i++){
-let d1=hydroTable[i], d2=hydroTable[i+1];
-if(draft>=d1.draft && draft<=d2.draft){
-let ratio=(draft-d1.draft)/(d2.draft-d1.draft);
-return d1.disp+ratio*(d2.disp-d1.disp);
-}}
-return null;
+    for(let i=0;i<hydroTable.length-1;i++){
+        let d1=hydroTable[i], d2=hydroTable[i+1];
+        if(draft>=d1.draft && draft<=d2.draft){
+            let ratio=(draft-d1.draft)/(d2.draft-d1.draft);
+            return d1.disp+ratio*(d2.disp-d1.disp);
+        }
+    }
+    return null;
 }
 
 function mean(a,b){ return (a+b)/2; }
 function trueMean(F,M,A){ return (((F+A)/2)+((F+M+A)/3))/2; }
 
+// ==============================
+// SAFE INPUT (koma → titik)
+// ==============================
+
 function get(id){
-const el=document.getElementById(id);
-if(!el) throw new Error("missing");
-let v=el.value.trim();
-if(v==="") throw new Error("empty");
-let n=parseFloat(v);
-if(isNaN(n)) throw new Error("nan");
-return n;
+    const el = document.getElementById(id);
+    if(!el) throw new Error("missing");
+    let v = el.value.trim();
+    if(v === "") throw new Error("empty");
+    v = v.replace(",", "."); // <-- penting
+    let n = parseFloat(v);
+    if(isNaN(n)) throw new Error("nan");
+    return n;
 }
 
 // ==============================
@@ -90,38 +96,36 @@ return n;
 // ==============================
 
 function calculateCargo(){
+    const out=document.getElementById("output");
 
-const out=document.getElementById("output");
+    try{
+        let density=parseFloat(document.getElementById("density").value)||1.025;
 
-try{
+        // initial
+        let iF=mean(get("i_fp"),get("i_fs"));
+        let iM=mean(get("i_mp"),get("i_ms"));
+        let iA=mean(get("i_ap"),get("i_as"));
+        let iMean=trueMean(iF,iM,iA);
 
-let density=parseFloat(document.getElementById("density").value)||1.025;
+        // final
+        let fF=mean(get("f_fp"),get("f_fs"));
+        let fM=mean(get("f_mp"),get("f_ms"));
+        let fA=mean(get("f_ap"),get("f_as"));
+        let fMean=trueMean(fF,fM,fA);
 
-// initial
-let iF=mean(get("i_fp"),get("i_fs"));
-let iM=mean(get("i_mp"),get("i_ms"));
-let iA=mean(get("i_ap"),get("i_as"));
-let iMean=trueMean(iF,iM,iA);
+        let initDisp=interpolate(iMean);
+        let finalDisp=interpolate(fMean);
 
-// final
-let fF=mean(get("f_fp"),get("f_fs"));
-let fM=mean(get("f_mp"),get("f_ms"));
-let fA=mean(get("f_ap"),get("f_as"));
-let fMean=trueMean(fF,fM,fA);
+        if(initDisp===null||finalDisp===null){
+            out.innerHTML="Draft outside hydro table range (0.500 – 5.000 m)";
+            return;
+        }
 
-let initDisp=interpolate(iMean);
-let finalDisp=interpolate(fMean);
+        let corrInit=initDisp*(density/1.025);
+        let corrFinal=finalDisp*(density/1.025);
+        let cargo=corrFinal-corrInit;
 
-if(initDisp===null||finalDisp===null){
-out.innerHTML="Draft outside hydro table range (0.500 – 5.000 m)";
-return;
-}
-
-let corrInit=initDisp*(density/1.025);
-let corrFinal=finalDisp*(density/1.025);
-let cargo=corrFinal-corrInit;
-
-out.innerHTML=`
+        out.innerHTML=`
 INITIAL SURVEY<br>
 Mean Draft : ${iMean.toFixed(4)} m<br>
 Displacement : ${corrInit.toFixed(2)} MT<br><br>
@@ -132,11 +136,9 @@ Displacement : ${corrFinal.toFixed(2)} MT<br><br>
 
 <strong>NET CARGO : ${cargo.toFixed(2)} MT</strong>
 `;
-
-}catch{
-out.innerHTML="Please fill ALL draft readings correctly.";
-}
-
+    }catch{
+        out.innerHTML="Please fill ALL draft readings correctly.";
+    }
 }
 
 // ==============================
@@ -144,8 +146,8 @@ out.innerHTML="Please fill ALL draft readings correctly.";
 // ==============================
 
 window.addEventListener("load",function(){
-const btn=document.getElementById("calcBtn");
-if(btn){
-btn.addEventListener("click",calculateCargo);
-}
+    const btn=document.getElementById("calcBtn");
+    if(btn){
+        btn.addEventListener("click",calculateCargo);
+    }
 });
