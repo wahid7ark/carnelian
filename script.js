@@ -1,5 +1,5 @@
 // ==========================================
-// BG ARK CARNELIAN - FINAL ENGINE UPGRADE
+// BG ARK CARNELIAN - FINAL ENGINE STABLE
 // Coder Base: Wahid (ARK DAN)
 // ==========================================
 
@@ -57,61 +57,86 @@ const hydroTable = [
 {draft:5.000,disp:10357.59}
 ];
 
+
+// ==============================
+// CORE FUNCTIONS
+// ==============================
+
 function interpolate(draft){
-if(draft<0.5||draft>5.0) return null;
-for(let i=0;i<hydroTable.length-1;i++){
-let d1=hydroTable[i], d2=hydroTable[i+1];
-if(draft>=d1.draft && draft<=d2.draft){
-let r=(draft-d1.draft)/(d2.draft-d1.draft);
-return d1.disp + r*(d2.disp-d1.disp);
-}}
+    if(draft < 0.5 || draft > 5.0) return null;
+
+    for(let i=0;i<hydroTable.length-1;i++){
+        let d1 = hydroTable[i];
+        let d2 = hydroTable[i+1];
+
+        if(draft >= d1.draft && draft <= d2.draft){
+            let ratio = (draft - d1.draft) / (d2.draft - d1.draft);
+            return d1.disp + ratio * (d2.disp - d1.disp);
+        }
+    }
+    return null;
 }
 
-function mean(a,b){return (a+b)/2;}
+function mean(a,b){ return (a+b)/2; }
 
 function trueMean(F,M,A){
-let q=(F+A)/2;
-let m=(F+M+A)/3;
-return (q+m)/2;
+    let quarter = (F + A)/2;
+    let simple = (F + M + A)/3;
+    return (quarter + simple)/2;
 }
+
+
+// ==============================
+// MAIN CALCULATION
+// ==============================
 
 function calculateCargo(){
 
-function get(id){return parseFloat(document.getElementById(id).value)||0;}
+    function get(id){
+        return parseFloat(document.getElementById(id).value) || 0;
+    }
 
-let iF=mean(get("i_fp"),get("i_fs"));
-let iM=mean(get("i_mp"),get("i_ms"));
-let iA=mean(get("i_ap"),get("i_as"));
+    let density = get("density") || 1.025;
 
-let fF=mean(get("f_fp"),get("f_fs"));
-let fM=mean(get("f_mp"),get("f_ms"));
-let fA=mean(get("f_ap"),get("f_as"));
+    // INITIAL
+    let iF = mean(get("i_fp"), get("i_fs"));
+    let iM = mean(get("i_mp"), get("i_ms"));
+    let iA = mean(get("i_ap"), get("i_as"));
+    let iMean = trueMean(iF, iM, iA);
 
-let iMean=trueMean(iF,iM,iA);
-let fMean=trueMean(fF,fM,fA);
+    // FINAL
+    let fF = mean(get("f_fp"), get("f_fs"));
+    let fM = mean(get("f_mp"), get("f_ms"));
+    let fA = mean(get("f_ap"), get("f_as"));
+    let fMean = trueMean(fF, fM, fA);
 
-let initialDispInput=get("initialDisp");
+    let initialDisp = interpolate(iMean);
+    let finalDisp   = interpolate(fMean);
 
-let finalDisp=interpolate(fMean);
-if(!finalDisp){
-document.getElementById("output").innerHTML=
-"Draft outside hydro table range (0.500–5.000)";
-return;
-}
+    if(initialDisp === null || finalDisp === null){
+        document.getElementById("output").innerHTML =
+        "Draft outside hydro table range (0.500 – 5.000 m)";
+        return;
+    }
 
-let density=get("density")||1.025;
-let correctedFinal=finalDisp*(density/1.025);
+    // Density correction BOTH
+    let correctedInitial = initialDisp * (density / 1.025);
+    let correctedFinal   = finalDisp   * (density / 1.025);
 
-let netCargo=correctedFinal-initialDispInput;
+    let netCargo = correctedFinal - correctedInitial;
 
-document.getElementById("output").innerHTML=
-`
-Initial Mean Draft : ${iMean.toFixed(4)} m<br>
-Final Mean Draft : ${fMean.toFixed(4)} m<br><br>
+    // Auto-fill initial displacement field
+    document.getElementById("initialDisp").value = correctedInitial.toFixed(2);
 
-Initial Displacement : ${initialDispInput.toFixed(2)} MT<br>
-Final Displacement (Density Corrected) : ${correctedFinal.toFixed(2)} MT<br><br>
+    document.getElementById("output").innerHTML = `
+    INITIAL SURVEY<br>
+    Mean Draft : ${iMean.toFixed(4)} m<br>
+    Displacement (Corrected) : ${correctedInitial.toFixed(2)} MT<br><br>
 
-<strong>NET CARGO : ${netCargo.toFixed(2)} MT</strong>
-`;
+    FINAL SURVEY<br>
+    Mean Draft : ${fMean.toFixed(4)} m<br>
+    Displacement (Corrected) : ${correctedFinal.toFixed(2)} MT<br><br>
+
+    <strong>NET CARGO : ${netCargo.toFixed(2)} MT</strong>
+    `;
 }
