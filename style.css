@@ -1,196 +1,174 @@
+/* ===============================
+   BASE STYLE (MOBILE FIRST)
+   =============================== */
+
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI, sans-serif;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body{
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-color:#fff;
-min-height:100vh;
-overflow-x:hidden;
+    margin:0;
+    padding:12px;
+    background:#f2f4f7;
 }
 
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.65);
-z-index:-1;
-}
-
+/* container utama */
 .container{
-max-width:1100px;
-margin:auto;
-padding:40px 25px;
+    max-width:700px;
+    margin:auto;
 }
 
-/* ================= HEADER ================= */
-
-header{
-text-align:center;
-margin-bottom:40px;
+/* judul */
+h2{
+    text-align:center;
+    margin:8px 0 14px;
+    letter-spacing:0.5px;
 }
 
-header h1{
-font-size:38px;
-letter-spacing:3px;
-color:#4db8ff;
-text-shadow:0 0 15px rgba(77,184,255,0.5);
+/* card section */
+.section{
+    background:#ffffff;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:12px;
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
 
-header h3{
-margin-top:12px;
-font-weight:300;
-color:#ccc;
-}
-
-header p{
-margin-top:6px;
-font-size:14px;
-color:#aaa;
-}
-
-/* ================= PHOTO ================= */
-
-.photo{
-text-align:center;
-margin-bottom:35px;
-}
-
-.photo img{
-width:100%;
-max-height:380px;
-object-fit:cover;
-border-radius:14px;
-box-shadow:0 0 30px rgba(0,0,0,0.7);
-transition:0.4s;
-}
-
-.photo img:hover{
-transform:scale(1.02);
-}
-
-/* ================= SECTION ================= */
-
-section{
-background:rgba(255,255,255,0.05);
-padding:25px;
-margin-bottom:25px;
-border-radius:14px;
-backdrop-filter:blur(12px);
-box-shadow:0 0 20px rgba(0,0,0,0.4);
-animation:fadeIn 0.8s ease;
-}
-
-section h2{
-margin-bottom:18px;
-color:#4db8ff;
-border-bottom:1px solid rgba(77,184,255,0.4);
-padding-bottom:6px;
-}
-
-/* ================= GRID LAYOUT ================= */
-
-.survey{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:15px 25px;
-}
-
-.constants{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:20px;
-}
-
-/* ================= FORM ================= */
-
+/* label */
 label{
-font-size:13px;
-color:#bbb;
+    display:block;
+    font-size:14px;
+    margin-top:10px;
+    margin-bottom:4px;
+    font-weight:600;
 }
 
+/* input */
 input{
-width:100%;
-padding:10px;
-margin-top:4px;
-border:none;
-border-radius:8px;
-background:#1e2a33;
-color:#fff;
-transition:0.3s;
+    width:100%;
+    padding:10px 8px;
+    border-radius:6px;
+    border:1px solid #cfd6df;
+    font-size:15px;
 }
 
+/* focus */
 input:focus{
-outline:none;
-background:#243845;
-box-shadow:0 0 10px rgba(77,184,255,0.4);
+    outline:none;
+    border:1px solid #2a7de1;
+    box-shadow:0 0 0 2px rgba(42,125,225,0.15);
 }
 
-/* ================= BUTTON ================= */
+/* hasil output */
+.output{
+    background:#eef3ff;
+    padding:10px;
+    border-radius:8px;
+    margin-top:10px;
+    font-weight:bold;
+}
 
+/* tombol */
 button{
-width:100%;
-padding:15px;
-font-size:17px;
-background:#4db8ff;
-border:none;
-border-radius:10px;
-cursor:pointer;
-transition:0.3s;
-font-weight:bold;
-letter-spacing:1px;
-box-shadow:0 0 15px rgba(77,184,255,0.5);
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    background:#2a7de1;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    margin-top:14px;
+    cursor:pointer;
 }
 
 button:hover{
-background:#3399dd;
-transform:translateY(-2px);
-box-shadow:0 0 25px rgba(77,184,255,0.8);
+    background:#1f63b4;
 }
 
-/* ================= RESULTS ================= */
-
-.results{
-text-align:center;
+/* tabel draft */
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
 }
 
-#output{
-margin-top:18px;
-background:#000;
-padding:20px;
-border-radius:10px;
-line-height:1.8;
-font-size:15px;
-box-shadow:0 0 15px rgba(0,0,0,0.6);
+th, td{
+    border:1px solid #d6dbe3;
+    padding:8px;
+    text-align:center;
+    font-size:14px;
 }
 
-#output strong{
-font-size:20px;
-color:#4db8ff;
-display:block;
-margin-top:10px;
-text-shadow:0 0 10px rgba(77,184,255,0.6);
+th{
+    background:#e9edf5;
 }
 
-/* ================= ANIMATION ================= */
 
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(10px);}
-to{opacity:1; transform:translateY(0);}
-}
+/* ======================================================
+   DESKTOP MODE (INI YANG MEMPERBAIKI TAMPILAN LAPTOP)
+   ====================================================== */
 
-/* ================= RESPONSIVE ================= */
+@media screen and (min-width: 900px){
 
-@media(max-width:900px){
-.survey{
-grid-template-columns:1fr;
-}
-.constants{
-grid-template-columns:1fr;
-}
+    body{
+        padding:20px;
+    }
+
+    .container{
+        max-width:1100px;
+    }
+
+    /* section jadi panel software */
+    .section{
+        padding:18px 22px;
+        border-radius:12px;
+    }
+
+    /* FORM GRID ENGINEERING STYLE */
+    .form-grid{
+        display:grid;
+        grid-template-columns: 260px 220px 260px 220px;
+        column-gap:18px;
+        row-gap:10px;
+        align-items:center;
+    }
+
+    /* label jadi kolom tetap */
+    .form-grid label{
+        margin:0;
+        text-align:right;
+        padding-right:10px;
+        font-size:14px;
+    }
+
+    /* input tidak melebar liar */
+    .form-grid input{
+        width:220px;
+        font-size:14px;
+        padding:7px 8px;
+    }
+
+    /* output rata kanan */
+    .output{
+        font-size:15px;
+    }
+
+    /* tombol tidak sepanjang layar */
+    button{
+        width:260px;
+        margin:auto;
+        display:block;
+    }
+
+    /* tabel lebih rapat seperti software */
+    table{
+        margin-top:14px;
+    }
+
+    th, td{
+        padding:7px;
+        font-size:13px;
+    }
 }
