@@ -38,19 +38,22 @@ header p {font-size:12px; color:#90a4ae;}
 @media(min-width:900px){.photo img{max-height:400px;}}
 
 /* ================= FORM INPUTS ================= */
+.form-grid {display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:12px;}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr;}}
 .form-row {display:flex; flex-direction:column; margin-bottom:12px;}
 label {font-size:12px; color:#b0bec5; margin-bottom:4px;}
-input {width:100%; padding:12px; font-size:16px; border:none; border-radius:10px; background:#0f1d25; color:#fff;}
+input {width:100%; padding:12px 10px; font-size:16px; border:none; border-radius:10px; background:#0f1d25; color:#fff;}
 input:focus{outline:none; background:#122a36; box-shadow:0 0 0 2px #4db8ff;}
 input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{-webkit-appearance:none; margin:0;}
 
 /* ================= BUTTON ================= */
 button {width:100%; padding:16px; margin-top:10px; font-size:18px; font-weight:bold; background:#2fa4ff; border:none; border-radius:12px; color:#fff; letter-spacing:1px; cursor:pointer;}
 button:active{transform:scale(0.97); background:#1d8fe0;}
+#aboutBtn{background:#4db8ff; color:#fff; margin-top:6px;}
 
 /* ================= OUTPUT ================= */
 .results{margin-top:12px; text-align:center;}
-#output{margin-top:12px; background:#000; padding:16px; border-radius:12px; font-size:14px; line-height:1.6;}
+#output{margin-top:12px; background:#000; padding:16px; border-radius:12px; font-size:14px; line-height:1.6; white-space:pre-wrap; font-family:"Courier New", monospace;}
 #output strong{font-size:18px; color:#4db8ff; display:block; margin-top:8px;}
 
 /* ================= MODAL ABOUT ================= */
@@ -58,115 +61,76 @@ button:active{transform:scale(0.97); background:#1d8fe0;}
 #aboutModal .modal-content{background:#162630; padding:20px; border-radius:12px; max-width:400px; text-align:center;}
 #aboutModal a{color:#4db8ff; text-decoration:none;}
 #aboutModal button{margin-top:12px;}
+
+/* ================= TYPING ANIMATION ================= */
+.formula {display:inline-block; overflow:hidden; border-right:2px solid #00ff99; white-space:nowrap; animation:typing 0.8s steps(30,end) forwards; margin-bottom:6px;}
+@keyframes typing {from{width:0;} to{width:100%;}}
 </style>
 </head>
 <body>
+
 <div class="container">
 <header>
   <h1>BG ARK CARNELIAN</h1>
   <h3>AnonGhost Draft Survey System</h3>
   <p>Coder: Mr. Wolf (ARK DAN)</p>
 </header> 
-<!-- ================= PHOTO ================= -->
+
 <section class="photo">
     <img src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/photo.jpg" alt="BG ARK CARNELIAN">
 </section>
 
-<!-- ================= AUDIO AUTOPLAY TERSEMBUNYI ================= -->
+<!-- ================= AUDIO ================= -->
 <audio autoplay loop style="display:none">
     <source src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/audio.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ================= TITLE / SUBTITLE ================= -->
+<!-- ================= TITLE ================= -->
 <div style="text-align:center; margin-bottom:20px;">
-    <h2 style="color:#4db8ff; font-size:22px;">BG ARK CARNELIAN Draft Survey</h2>
-    <p style="color:#cfd8dc; font-size:14px;">Initial & Final Survey Calculator</p>
+    <h2 style="color:#4db8ff; font-size:22px;">Draft Survey Calculator</h2>
+    <p style="color:#cfd8dc; font-size:14px;">Initial & Final Survey</p>
 </div>
+
 <!-- ================= INITIAL SURVEY ================= -->
 <section class="survey-section">
   <h2 style="color:#4db8ff;">INITIAL SURVEY</h2>
-  <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-    <div class="form-row">
-      <label for="i_fp">Forward Port</label>
-      <input type="number" id="i_fp" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="i_fs">Forward Starboard</label>
-      <input type="number" id="i_fs" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="i_mp">Mid Port</label>
-      <input type="number" id="i_mp" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="i_ms">Mid Starboard</label>
-      <input type="number" id="i_ms" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="i_ap">Aft Port</label>
-      <input type="number" id="i_ap" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="i_as">Aft Starboard</label>
-      <input type="number" id="i_as" step="0.001" placeholder="m">
-    </div>
+  <div class="form-grid">
+    <div class="form-row"><label for="i_fp">Forward Port</label><input type="number" id="i_fp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_fs">Forward Starboard</label><input type="number" id="i_fs" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_mp">Mid Port</label><input type="number" id="i_mp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_ms">Mid Starboard</label><input type="number" id="i_ms" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_ap">Aft Port</label><input type="number" id="i_ap" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_as">Aft Starboard</label><input type="number" id="i_as" step="0.001" placeholder="m"></div>
   </div>
-  <p style="font-size:12px; color:#b0bec5;">Initial Displacement will be calculated automatically from hydrostatic table.</p>
+  <p style="font-size:12px; color:#b0bec5;">Initial Displacement will be calculated automatically.</p>
 </section>
 
 <!-- ================= FINAL SURVEY ================= -->
 <section class="survey-section">
   <h2 style="color:#4db8ff;">FINAL SURVEY</h2>
-  <div class="form-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-    <div class="form-row">
-      <label for="f_fp">Forward Port</label>
-      <input type="number" id="f_fp" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="f_fs">Forward Starboard</label>
-      <input type="number" id="f_fs" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="f_mp">Mid Port</label>
-      <input type="number" id="f_mp" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="f_ms">Mid Starboard</label>
-      <input type="number" id="f_ms" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="f_ap">Aft Port</label>
-      <input type="number" id="f_ap" step="0.001" placeholder="m">
-    </div>
-    <div class="form-row">
-      <label for="f_as">Aft Starboard</label>
-      <input type="number" id="f_as" step="0.001" placeholder="m">
-    </div>
+  <div class="form-grid">
+    <div class="form-row"><label for="f_fp">Forward Port</label><input type="number" id="f_fp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_fs">Forward Starboard</label><input type="number" id="f_fs" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_mp">Mid Port</label><input type="number" id="f_mp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_ms">Mid Starboard</label><input type="number" id="f_ms" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_ap">Aft Port</label><input type="number" id="f_ap" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_as">Aft Starboard</label><input type="number" id="f_as" step="0.001" placeholder="m"></div>
   </div>
 </section>
 
 <!-- ================= CONSTANTS ================= -->
 <section class="constants-section">
   <h2 style="color:#4db8ff;">CONSTANTS</h2>
-  <div class="form-grid" style="display:grid; grid-template-columns:1fr; gap:10px;">
-    <div class="form-row">
-      <label for="waterplane">Waterplane Area (m²)</label>
-      <input type="number" id="waterplane" value="2184">
-    </div>
-    <div class="form-row">
-      <label for="coef">Form Coefficient</label>
-      <input type="number" id="coef" value="0.75" step="0.01">
-    </div>
-    <div class="form-row">
-      <label for="density">Observed Density (kg/L)</label>
-      <input type="number" id="density" value="1.025" step="0.001">
-    </div>
+  <div class="form-grid" style="grid-template-columns:1fr;">
+    <div class="form-row"><label for="waterplane">Waterplane Area (m²)</label><input type="number" id="waterplane" value="2184"></div>
+    <div class="form-row"><label for="coef">Form Coefficient</label><input type="number" id="coef" value="0.75" step="0.01"></div>
+    <div class="form-row"><label for="density">Observed Density (kg/L)</label><input type="number" id="density" value="1.025" step="0.001"></div>
   </div>
 </section>
 
 <!-- ================= BUTTONS ================= -->
 <button id="calcBtn" type="button">CALCULATE CARGO</button>
-<button id="aboutBtn" type="button" style="margin-top:6px; background:#555;">ABOUT</button>
+<button id="aboutBtn" type="button">ABOUT</button>
 
 <!-- ================= RESULTS ================= -->
 <section class="results">
@@ -174,18 +138,17 @@ button:active{transform:scale(0.97); background:#1d8fe0;}
   <div id="output"></div>
 </section>
 
-<!-- ================= MODAL ABOUT ================= -->
+<!-- ================= MODAL ================= -->
 <div id="aboutModal">
   <div class="modal-content">
     <h3>About BG ARK CARNELIAN Draft Survey</h3>
-    <p>This application is designed to simplify cargo calculations for BG ARK CARNELIAN. Version 1.1 is the current release. Version 1.2 coming soon. Stay tuned at <a href="https://wahid7ark.github.io" target="_blank">wahid7ark.github.io</a>.</p>
+    <p>This app simplifies cargo calculation. Version 1.1 current. Version 1.2 coming soon. Visit <a href="https://wahid7ark.github.io" target="_blank">wahid7ark.github.io</a></p>
     <button id="closeAbout">CLOSE</button>
   </div>
 </div>
+
 <script>
-// ==============================
-// HYDROSTATIC TABLE
-// ==============================
+// ================= HYDROSTATIC TABLE =================
 const hydroTable = [
 {draft:0.500,disp:965.33},{draft:0.550,disp:1051.62},{draft:0.600,disp:1138.47},{draft:0.650,disp:1225.88},
 {draft:0.700,disp:1313.86},{draft:0.750,disp:1402.40},{draft:0.800,disp:1491.50},{draft:0.850,disp:1581.17},
@@ -212,9 +175,7 @@ const hydroTable = [
 {draft:4.900,disp:10135.34},{draft:4.950,disp:10246.45},{draft:5.000,disp:10357.59}
 ];
 
-// ==============================
-// FUNCTIONS
-// ==============================
+// ================= FUNCTIONS =================
 function interpolate(draft){
   if(isNaN(draft)) return null;
   if(draft <0.5 || draft >5.0) return null;
@@ -227,7 +188,6 @@ function interpolate(draft){
   }
   return null;
 }
-
 function mean(a,b){return (a+b)/2;}
 function trueMean(F,M,A){return (((F+A)/2)+((F+M+A)/3))/2;}
 function get(id){
@@ -240,9 +200,7 @@ function get(id){
   return n;
 }
 
-// ==============================
-// CALCULATE CARGO
-// ==============================
+// ================= CALCULATE CARGO =================
 function calculateCargo(){
   const out=document.getElementById("output");
   try{
@@ -271,37 +229,56 @@ function calculateCargo(){
     let corrFinal=finalDisp*(density/1.025);
     let cargo=corrFinal-corrInit;
 
-    out.innerHTML=`
-INITIAL SURVEY
-Mean Draft : ${iMean.toFixed(4)} m
-Displacement : ${corrInit.toFixed(2)} MT
+    // Animated formula display
+    const formulas = [
+      `// ==== Initial Survey ====`,
+      `iF = (FP+FS)/2 = ${iF.toFixed(3)}`,
+      `iM = (MP+MS)/2 = ${iM.toFixed(3)}`,
+      `iA = (AP+AS)/2 = ${iA.toFixed(3)}`,
+      `Mean Draft (Initial) = ${iMean.toFixed(4)} m`,
+      `Displacement (Initial) = ${corrInit.toFixed(2)} MT`,
+      `// ==== Final Survey ====`,
+      `fF = (FP+FS)/2 = ${fF.toFixed(3)}`,
+      `fM = (MP+MS)/2 = ${fM.toFixed(3)}`,
+      `fA = (AP+AS)/2 = ${fA.toFixed(3)}`,
+      `Mean Draft (Final) = ${fMean.toFixed(4)} m`,
+      `Displacement (Final) = ${corrFinal.toFixed(2)} MT`,
+      `// ==== NET CARGO ====`,
+      `NET CARGO = ${cargo.toFixed(2)} MT`
+    ];
 
-FINAL SURVEY
-Mean Draft : ${fMean.toFixed(4)} m
-Displacement : ${corrFinal.toFixed(2)} MT
+    out.innerHTML = ""; // Clear previous
+    let idx = 0;
+    function showNext() {
+      if (idx >= formulas.length) return;
+      const line = document.createElement("div");
+      line.className = "formula";
+      line.textContent = formulas[idx];
+      out.appendChild(line);
+      idx++;
+      setTimeout(showNext, 200); // delay per line
+    }
+    showNext();
 
-<strong>NET CARGO : ${cargo.toFixed(2)} MT</strong>
-    `;
-  }catch{
-    out.innerHTML="Please fill ALL draft readings correctly.";
+  } catch(e) {
+    out.innerHTML = "Please fill ALL draft readings correctly.";
   }
 }
 
-// ==============================
-// BUTTON EVENT BINDING
-// ==============================
-window.addEventListener("load",function(){
+// ================= BUTTON & MODAL EVENTS =================
+window.addEventListener("load", () => {
+  // Calculate button
   document.getElementById("calcBtn").addEventListener("click", calculateCargo);
 
-  // modal About
+  // About modal
   const aboutBtn = document.getElementById("aboutBtn");
   const modal = document.getElementById("aboutModal");
   const closeBtn = document.getElementById("closeAbout");
-  aboutBtn.addEventListener("click", ()=>{modal.style.display="flex";});
-  closeBtn.addEventListener("click", ()=>{modal.style.display="none";});
-  window.addEventListener("click", e=>{if(e.target===modal) modal.style.display="none";});
+
+  aboutBtn.addEventListener("click", () => { modal.style.display = "flex"; });
+  closeBtn.addEventListener("click", () => { modal.style.display = "none"; });
+  window.addEventListener("click", e => { if(e.target === modal) modal.style.display = "none"; });
 });
 </script>
-
 </body>
 </html>
