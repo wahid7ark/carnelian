@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="Mr. W">
+<meta name="description" content="BG ARK CARNELIAN Draft Survey System">
+<title>BG ARK CARNELIAN - Draft Survey Pro</title>
+
+<!-- Favicon & Font -->
+<link rel="shortcut icon" href="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/refs/heads/main/icon.png" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css?family=Iceland" rel="stylesheet">
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body, html {margin:0;padding:0;background:#121212;color:white;font-family:'Iceland',sans-serif;display:flex;flex-direction:column;align-items:center;}
+.container {max-width:900px;width:95%;margin:auto;padding:14px;}
+header {text-align:center;margin-bottom:18px;}
+header h1 {font-size:26px;color:#4db8ff;letter-spacing:1px;}
+header h3 {font-size:14px;color:#cfd8dc;margin-top:4px;}
+header p {font-size:12px;color:#90a4ae;}
+.photo img {width:100%;max-height:300px;border-radius:10px;margin-bottom:12px;object-fit:cover;}
+@media(min-width:900px){.photo img{max-height:400px;}}
+.form-grid {display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:12px;}
+@media(max-width:480px){.form-grid{grid-template-columns:1fr;}}
+.form-row {display:flex;flex-direction:column;margin-bottom:12px;}
+label {font-size:12px;color:#b0bec5;margin-bottom:4px;}
+input {width:100%;padding:12px 10px;font-size:16px;border:none;border-radius:10px;background:#0f1d25;color:#fff;}
+input:focus{outline:none;background:#122a36;box-shadow:0 0 0 2px #4db8ff;}
+button {width:100%;padding:16px;margin-top:10px;font-size:18px;font-weight:bold;background:#2fa4ff;border:none;border-radius:12px;color:#fff;cursor:pointer;}
+button:active{transform:scale(0.97);background:#1d8fe0;}
+#aboutBtn{background:#4db8ff;}
+.results{margin-top:12px;text-align:center;}
+#output{margin-top:12px;background:#000;padding:16px;border-radius:12px;font-size:14px;line-height:1.6;white-space:pre-wrap;font-family:"Courier New",monospace;}
+#chartContainer{margin-top:24px;background:#162630;padding:12px;border-radius:12px;}
+#history{margin-top:24px;background:#0f1d25;padding:12px;border-radius:12px;max-height:200px;overflow-y:auto;}
+.table-placeholder{margin-top:24px;padding:12px;background:#0f1d25;border-radius:12px;color:#4db8ff;font-size:14px;}
+#aboutModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);justify-content:center;align-items:center;z-index:999;}
+#aboutModal .modal-content{background:#162630;padding:20px;border-radius:12px;text-align:center;max-width:400px;}
+#aboutModal a{color:#4db8ff;text-decoration:none;}
+#aboutModal button{margin-top:12px;}
+</style>
+</head>
+<body>
+
+<div class="container">
+<header>
+  <h1>BG ARK CARNELIAN</h1>
+  <h3>Draft Survey Pro System</h3>
+  <p>Coder: Mr. Wolf (ARK DAN)</p>
+</header> 
+
+<section class="photo">
+    <img src="https://raw.githubusercontent.com/wahid7ark/wahid7ark.github.io/main/photo.jpg" alt="BG ARK CARNELIAN">
+</section>
+
+<div style="text-align:center;margin-bottom:20px;">
+    <h2 style="color:#4db8ff;font-size:22px;">Draft Survey Calculator</h2>
+    <p style="color:#cfd8dc;font-size:14px;">Initial & Final Survey</p>
+</div>
+
+<!-- Survey Inputs -->
+<section class="survey-section">
+  <h2 style="color:#4db8ff;">INITIAL SURVEY</h2>
+  <div class="form-grid">
+    <div class="form-row"><label for="i_fp">Forward Port</label><input type="number" id="i_fp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_fs">Forward Starboard</label><input type="number" id="i_fs" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_mp">Mid Port</label><input type="number" id="i_mp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_ms">Mid Starboard</label><input type="number" id="i_ms" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_ap">Aft Port</label><input type="number" id="i_ap" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="i_as">Aft Starboard</label><input type="number" id="i_as" step="0.001" placeholder="m"></div>
+  </div>
+</section>
+
+<section class="survey-section">
+  <h2 style="color:#4db8ff;">FINAL SURVEY</h2>
+  <div class="form-grid">
+    <div class="form-row"><label for="f_fp">Forward Port</label><input type="number" id="f_fp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_fs">Forward Starboard</label><input type="number" id="f_fs" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_mp">Mid Port</label><input type="number" id="f_mp" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_ms">Mid Starboard</label><input type="number" id="f_ms" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_ap">Aft Port</label><input type="number" id="f_ap" step="0.001" placeholder="m"></div>
+    <div class="form-row"><label for="f_as">Aft Starboard</label><input type="number" id="f_as" step="0.001" placeholder="m"></div>
+  </div>
+</section>
+
+<section class="constants-section">
+  <h2 style="color:#4db8ff;">CONSTANTS</h2>
+  <div class="form-grid" style="grid-template-columns:1fr;">
+    <div class="form-row"><label for="density">Observed Density (kg/L)</label><input type="number" id="density" value="1.025" step="0.001"></div>
+  </div>
+</section>
+
+<button id="calcBtn" type="button">CALCULATE CARGO</button>
+<button id="exportBtn" type="button">EXPORT CSV</button>
+<button id="aboutBtn" type="button">ABOUT</button>
+
+<section class="results">
+  <h2 style="color:#4db8ff;">RESULTS</h2>
+  <div id="output"></div>
+</section>
+
+<!-- Chart -->
+<div id="chartContainer">
+  <canvas id="draftChart"></canvas>
+</div>
+
+<!-- History -->
+<div id="history">
+  <h3 style="color:#4db8ff;margin-bottom:6px;">Survey History</h3>
+  <div id="historyList"></div>
+</div>
+
+<!-- Placeholder Hydro Table -->
+<div class="table-placeholder">
+  <strong>Hydrostatic Table Placeholder:</strong> insert your hydroTable script here.
+</div>
+
+<!-- About Modal -->
+<div id="aboutModal">
+  <div class="modal-content">
+    <h3>About BG ARK CARNELIAN Draft Survey Pro</h3>
+    <p>Pro version includes chart & history. Visit <a href="https://github.com/wahid7ark/wahid7ark.github.io/blob/main/carnelian.html" target="_blank">wahid7ark.github.io</a></p>
+    <button id="closeAbout">CLOSE</button>
+  </div>
+</div>
+
+<script>
+// ======= UTILS =======
+function mean(a,b){return (a+b)/2;}
+function trueMean(F,M,A){return (((F+A)/2)+((F+M+A)/3))/2;}
+function get(id){const el=document.getElementById(id); let v=el.value.trim(); if(v==="") throw "empty"; let n=parseFloat(v); if(isNaN(n)) throw "nan"; return n;}
+
+// ======= Hydro Table Placeholder =======
+let hydroTable = []; // <-- fill manually later
+function interpolateValue(draft,key){if(hydroTable.length===0) return null; for(let i=0;i<hydroTable.length-1;i++){let d1=hydroTable[i],d2=hydroTable[i+1]; if(draft>=d1.draft && draft<=d2.draft){let r=(draft-d1.draft)/(d2.draft-d1.draft); return d1[key]+r*(d2[key]-d1[key]);} } return null; }
+
+// ======= Calculate Cargo =======
+function calculateCargo(){
+  const out=document.getElementById("output");
+  try{
+    let density=parseFloat(document.getElementById("density").value)||1.025;
+    let iF=mean(get("i_fp"),get("i_fs"));
+    let iM=mean(get("i_mp"),get("i_ms"));
+    let iA=mean(get("i_ap"),get("i_as"));
+    let fF=mean(get("f_fp"),get("f_fs"));
+    let fM=mean(get("f_mp"),get("f_ms"));
+    let fA=mean(get("f_ap"),get("f_as"));
+    let iMean=trueMean(iF,iM,iA);
+    let fMean=trueMean(fF,fM,fA);
+    let initDisp=interpolateValue(iMean,'disp')*(density/1.025);
+    let finalDisp=interpolateValue(fMean,'disp')*(density/1.025);
+    if(initDisp===null||finalDisp===null){out.innerHTML="Draft outside hydro table range."; return;}
+    let cargo=finalDisp-initDisp;
+    out.innerHTML=`NET CARGO = ${cargo.toFixed(2)} MT`;
+    
+    // ======= Save History =======
+    let history=JSON.parse(localStorage.getItem('surveyHistory')||'[]');
+    history.unshift({date:new Date().toLocaleString(),iMean:fMean.toFixed(3),cargo:cargo.toFixed(2)});
+    if(history.length>10) history.pop();
+    localStorage.setItem('surveyHistory',JSON.stringify(history));
+    renderHistory();
+
+    // ======= Chart =======
+    renderChart(iMean,fMean,initDisp,finalDisp);
+
+  }catch(e){out.innerHTML="Please fill all drafts correctly.";}
+}
+
+// ======= Render History =======
+function renderHistory(){
+  const list=document.getElementById("historyList");
+  list.innerHTML="";
+  let history=JSON.parse(localStorage.getItem('surveyHistory')||'[]');
+  history.forEach(h=>{
+    let div=document.createElement("div");
+    div.textContent=`${h.date} | Mean Draft: ${h.iMean} m | Cargo: ${h.cargo} MT`;
+    list.appendChild(div);
+  });
+}
+
+// ======= Render Chart =======
+let chart=null;
+function renderChart(iMean,fMean,initDisp,finalDisp){
+  const ctx=document.getElementById("draftChart").getContext("2d");
+  if(chart) chart.destroy();
+  chart=new Chart(ctx,{type:'line',data:{
+    labels:[`Initial (${iMean.toFixed(2)})`,`Final (${fMean.toFixed(2)})`],
+    datasets:[{label:'Displacement (MT)',data:[initDisp,finalDisp],borderColor:'#4db8ff',backgroundColor:'rgba(77,184,255,0.2)',fill:true,tension:0.3}]
+  },options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:false}}}});
+}
+
+// ======= Export CSV =======
+function exportCSV(){
+  let history=JSON.parse(localStorage.getItem('surveyHistory')||'[]');
+  if(history.length===0){alert("No data to export."); return;}
+  let csv="Date,Mean Draft,Cargo (MT)\n";
+  history.forEach(h=>{csv+=`${h.date},${h.iMean},${h.cargo}\n`;});
+  const blob=new Blob([csv],{type:"text/csv"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download="survey_history.csv"; a.click();
+  URL.revokeObjectURL(url);
+}
+
+// ======= Button Events =======
+window.addEventListener("load",()=>{
+  document.getElementById("calcBtn").addEventListener("click",calculateCargo);
+  document.getElementById("exportBtn").addEventListener("click",exportCSV);
+  const aboutBtn=document.getElementById("aboutBtn");
+  const modal=document.getElementById("aboutModal");
+  const closeBtn=document.getElementById("closeAbout");
+  aboutBtn.addEventListener("click",()=>{modal.style.display="flex";});
+  closeBtn.addEventListener("click",()=>{modal.style.display="none";});
+  window.addEventListener("click",e=>{if(e.target===modal) modal.style.display="none";});
+  renderHistory();
+});
+</script>
+
+</body>
+</html>
