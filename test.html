@@ -8,98 +8,110 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-body{
-margin:0;
-font-family:'Orbitron',sans-serif;
-background:linear-gradient(#03121c,#000814);
-color:white;
-text-align:center;
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(#03121c, #000814);
+    color: white;
+    text-align: center;
 }
 
 /* HEADER */
-h1{margin:12px 0;letter-spacing:2px}
+h1 {
+    margin: 12px 0;
+    letter-spacing: 2px;
+}
 
 /* BARGE PHOTO */
-#barge{
-width:95%;
-max-width:720px;
-border-radius:14px;
-box-shadow:0 0 25px #00eaff55;
+#barge {
+    width: 95%;
+    max-width: 720px;
+    border-radius: 14px;
+    box-shadow: 0 0 25px #00eaff55;
 }
 
 /* LAYOUT */
-.container{
-display:grid;
-gap:14px;
-padding:14px;
+.container {
+    display: grid;
+    gap: 14px;
+    padding: 14px;
 }
 
-.card{
-background:#021019;
-padding:15px;
-border-radius:14px;
-box-shadow:0 0 15px #00ffd533 inset;
+.card {
+    background: #021019;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 0 15px #00ffd533 inset;
 }
 
-input{
-width:92%;
-padding:11px;
-margin:6px;
-border-radius:8px;
-border:none;
-background:#000c14;
-color:white;
-text-align:center;
-font-size:15px;
+input {
+    width: 92%;
+    padding: 11px;
+    margin: 6px;
+    border-radius: 8px;
+    border: none;
+    background: #000c14;
+    color: white;
+    text-align: center;
+    font-size: 15px;
 }
 
 /* BUTTON */
-button{
-padding:13px;
-margin:8px;
-border:none;
-border-radius:12px;
-background:#90ffb0;
-color:black;
-font-weight:bold;
-font-size:15px;
+button {
+    padding: 13px;
+    margin: 8px;
+    border: none;
+    border-radius: 12px;
+    background: #90ffb0;
+    color: black;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 /* RESULT */
-#result{
-font-size:21px;
-color:#00ffd5;
-margin-top:10px;
+#result {
+    font-size: 21px;
+    color: #00ffd5;
+    margin-top: 10px;
 }
 
 /* PROCESS */
-#process{
-text-align:left;
-white-space:pre-line;
-font-size:13px;
-color:#bffcf3;
-margin-top:12px;
+#process {
+    text-align: left;
+    white-space: pre-line;
+    font-size: 13px;
+    color: #bffcf3;
+    margin-top: 12px;
 }
 
 /* ABOUT */
-#aboutBox{
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:#000c;
-display:none;
+#aboutBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000c;
+    display: none;
 }
-#aboutContent{
-background:#021019;
-margin:15% auto;
-padding:20px;
-width:85%;
-border-radius:12px;
+
+#aboutContent {
+    background: #021019;
+    margin: 15% auto;
+    padding: 20px;
+    width: 85%;
+    border-radius: 12px;
 }
 
 /* FOOTER */
-footer{padding:12px;font-size:12px}
-.green{color:#00ff7b}
+footer {
+    padding: 12px;
+    font-size: 12px;
+}
+
+.green {
+    color: #00ff7b;
+}
 </style>
 </head>
 
@@ -107,7 +119,7 @@ footer{padding:12px;font-size:12px}
 
 <!-- AUTO MUSIC -->
 <audio autoplay loop>
-<source src="https://raw.githubusercontent.com/wahid7ark/assets/main/music.mp3" type="audio/mpeg">
+    <source src="https://raw.githubusercontent.com/wahid7ark/assets/main/music.mp3" type="audio/mpeg">
 </audio>
 
 <h1>BG ARK CARNELIAN</h1>
@@ -116,149 +128,180 @@ footer{padding:12px;font-size:12px}
 
 <div class="container">
 
-<div class="card">
-<h3>INITIAL SURVEY</h3>
-<input id="ifp" placeholder="Forward Port">
-<input id="ifs" placeholder="Forward Starboard">
-<input id="imp" placeholder="Mid Port">
-<input id="ims" placeholder="Mid Starboard">
-<input id="iap" placeholder="Aft Port">
-<input id="ias" placeholder="Aft Starboard">
-<input id="densI" value="1.025" placeholder="Density">
-</div>
+    <div class="card">
+        <h3>INITIAL SURVEY</h3>
+        <input id="ifp" placeholder="Forward Port">
+        <input id="ifs" placeholder="Forward Starboard">
+        <input id="imp" placeholder="Mid Port">
+        <input id="ims" placeholder="Mid Starboard">
+        <input id="iap" placeholder="Aft Port">
+        <input id="ias" placeholder="Aft Starboard">
+        <input id="densI" value="1.025" placeholder="Density">
+    </div>
 
-<div class="card">
-<h3>FINAL SURVEY</h3>
-<input id="ffp" placeholder="Forward Port">
-<input id="ffs" placeholder="Forward Starboard">
-<input id="fmp" placeholder="Mid Port">
-<input id="fms" placeholder="Mid Starboard">
-<input id="fap" placeholder="Aft Port">
-<input id="fas" placeholder="Aft Starboard">
-<input id="densF" value="1.025" placeholder="Density">
-</div>
+    <div class="card">
+        <h3>FINAL SURVEY</h3>
+        <input id="ffp" placeholder="Forward Port">
+        <input id="ffs" placeholder="Forward Starboard">
+        <input id="fmp" placeholder="Mid Port">
+        <input id="fms" placeholder="Mid Starboard">
+        <input id="fap" placeholder="Aft Port">
+        <input id="fas" placeholder="Aft Starboard">
+        <input id="densF" value="1.025" placeholder="Density">
+    </div>
 
-<button onclick="calculate()">CALCULATE</button>
-<button onclick="exportReport()">EXPORT REPORT</button>
-<button onclick="showAbout()">ABOUT</button>
+    <button onclick="calculate()">CALCULATE</button>
+    <button onclick="exportReport()">EXPORT REPORT</button>
+    <button onclick="showAbout()">ABOUT</button>
 
-<div class="card">
-<div id="result">Awaiting Calculation...</div>
-<div id="process"></div>
-</div>
+    <div class="card">
+        <div id="result">Awaiting Calculation...</div>
+        <div id="process"></div>
+    </div>
 
 </div>
 
 <div id="aboutBox">
-<div id="aboutContent">
-<h3>Draft Survey Assistant Officer v1.1</h3>
-<p>Barge Draft Survey Calculator using Quarter Mean Draft, LCF correction, Trim correction (MCT 1cm), Density correction and Hydrostatic interpolation.</p>
-<button onclick="aboutBox.style.display='none'">Close</button>
-</div>
+    <div id="aboutContent">
+        <h3>Draft Survey Assistant Officer v1.1</h3>
+        <p>
+            Barge Draft Survey Calculator using Quarter Mean Draft, LCF correction,
+            Trim correction (MCT 1cm), Density correction and Hydrostatic interpolation.
+        </p>
+        <button onclick="aboutBox.style.display='none'">Close</button>
+    </div>
 </div>
 
 <footer>
-coder: Mr. W (ARK DAN) <span class="green">©<span id="year"></span></span>
+    coder: Mr. W (ARK DAN)
+    <span class="green">©<span id="year"></span></span>
 </footer>
 
 <script>
-document.getElementById("year").innerText=new Date().getFullYear();
+document.getElementById("year").innerText = new Date().getFullYear();
 
 /* ========= PASTE YOUR HYDROSTATIC TABLE HERE ========= */
 
 
-
 /* INTERPOLATION */
-function interpolate(draft){
-for(let i=0;i<hydroTable.length-1;i++){
-let a=hydroTable[i];
-let b=hydroTable[i+1];
-if(draft>=a.draft && draft<=b.draft){
-let r=(draft-a.draft)/(b.draft-a.draft);
-return{
-disp:a.disp+(b.disp-a.disp)*r,
-tpc:a.tpc+(b.tpc-a.tpc)*r,
-lcf:a.lcf+(b.lcf-a.lcf)*r,
-mct:a.degTrim+(b.degTrim-a.degTrim)*r,
-vcb:a.vcb+(b.vcb-a.vcb)*r,
-kml:a.kml+(b.kml-a.kml)*r,
-kmt:a.kmt+(b.kmt-a.kmt)*r
-};
-}}
+function interpolate(draft) {
+    for (let i = 0; i < hydroTable.length - 1; i++) {
+
+        let a = hydroTable[i];
+        let b = hydroTable[i + 1];
+
+        if (draft >= a.draft && draft <= b.draft) {
+
+            let r = (draft - a.draft) / (b.draft - a.draft);
+
+            return {
+                disp: a.disp + (b.disp - a.disp) * r,
+                tpc: a.tpc + (b.tpc - a.tpc) * r,
+                lcf: a.lcf + (b.lcf - a.lcf) * r,
+                mct: a.degTrim + (b.degTrim - a.degTrim) * r,
+                vcb: a.vcb + (b.vcb - a.vcb) * r,
+                kml: a.kml + (b.kml - a.kml) * r,
+                kmt: a.kmt + (b.kmt - a.kmt) * r
+            };
+        }
+    }
 }
 
 /* BASIC FORMULAS */
-function mean(p,s){return (parseFloat(p)+parseFloat(s))/2;}
-function qmd(f,m,a){return (f+a+6*m)/8;}
+function mean(p, s) {
+    return (parseFloat(p) + parseFloat(s)) / 2;
+}
+
+function qmd(f, m, a) {
+    return (f + a + 6 * m) / 8;
+}
 
 /* SURVEY CORE */
-function getSurvey(prefix){
+function getSurvey(prefix) {
 
-let F=mean(document.getElementById(prefix+"fp").value,document.getElementById(prefix+"fs").value);
-let M=mean(document.getElementById(prefix+"mp").value,document.getElementById(prefix+"ms").value);
-let A=mean(document.getElementById(prefix+"ap").value,document.getElementById(prefix+"as").value);
+    let F = mean(
+        document.getElementById(prefix + "fp").value,
+        document.getElementById(prefix + "fs").value
+    );
 
-let Q=qmd(F,M,A);
-let hydro=interpolate(Q);
+    let M = mean(
+        document.getElementById(prefix + "mp").value,
+        document.getElementById(prefix + "ms").value
+    );
 
-let trim=A-F;
-let LBP=92.0;
+    let A = mean(
+        document.getElementById(prefix + "ap").value,
+        document.getElementById(prefix + "as").value
+    );
 
-let draftLCF=Q+(trim*hydro.lcf/LBP);
-let hydroLCF=interpolate(draftLCF);
+    let Q = qmd(F, M, A);
+    let hydro = interpolate(Q);
 
-let trimCorr=(trim*100*hydroLCF.tpc*hydroLCF.lcf)/hydroLCF.mct;
+    let trim = A - F;
+    let LBP = 92.0;
 
-let dispCorrected=hydroLCF.disp+trimCorr;
+    let draftLCF = Q + (trim * hydro.lcf / LBP);
+    let hydroLCF = interpolate(draftLCF);
 
-let density=parseFloat(document.getElementById(prefix=="i"?"densI":"densF").value);
-dispCorrected*=density/1.025;
+    let trimCorr = (trim * 100 * hydroLCF.tpc * hydroLCF.lcf) / hydroLCF.mct;
 
-return{
-disp:dispCorrected,
-draft:Q,
-trim:trim,
-hydro:hydroLCF
-};
+    let dispCorrected = hydroLCF.disp + trimCorr;
+
+    let density = parseFloat(document.getElementById(prefix == "i" ? "densI" : "densF").value);
+    dispCorrected *= density / 1.025;
+
+    return {
+        disp: dispCorrected,
+        draft: Q,
+        trim: trim,
+        hydro: hydroLCF
+    };
 }
 
 /* FINAL CALCULATION */
-function calculate(){
+function calculate() {
 
-let I=getSurvey("i");
-let F=getSurvey("f");
+    let I = getSurvey("i");
+    let F = getSurvey("f");
 
-let cargo=F.disp-I.disp;
+    let cargo = F.disp - I.disp;
 
-document.getElementById("result").innerHTML=
-"<b>CARGO WEIGHT : "+cargo.toFixed(2)+" MT</b>";
+    document.getElementById("result").innerHTML =
+        "<b>CARGO WEIGHT : " + cargo.toFixed(2) + " MT</b>";
 
-document.getElementById("process").innerText=
-"INITIAL DISPLACEMENT : "+I.disp.toFixed(2)+" MT\n"+
-"FINAL DISPLACEMENT   : "+F.disp.toFixed(2)+" MT\n\n"+
-"INITIAL DRAFT : "+I.draft.toFixed(3)+" m\n"+
-"FINAL DRAFT   : "+F.draft.toFixed(3)+" m\n\n"+
-"INITIAL TRIM : "+I.trim.toFixed(3)+" m\n"+
-"FINAL TRIM   : "+F.trim.toFixed(3)+" m\n\n"+
-"TPC USED : "+F.hydro.tpc.toFixed(3)+"\n"+
-"LCF USED : "+F.hydro.lcf.toFixed(3)+"\n"+
-"MCT USED : "+F.hydro.mct.toFixed(2)+"\n"+
-"VCB : "+F.hydro.vcb.toFixed(3)+"\n"+
-"KML : "+F.hydro.kml.toFixed(2)+"\n"+
-"KMT : "+F.hydro.kmt.toFixed(2);
+    document.getElementById("process").innerText =
+        "INITIAL DISPLACEMENT : " + I.disp.toFixed(2) + " MT\n" +
+        "FINAL DISPLACEMENT   : " + F.disp.toFixed(2) + " MT\n\n" +
+        "INITIAL DRAFT : " + I.draft.toFixed(3) + " m\n" +
+        "FINAL DRAFT   : " + F.draft.toFixed(3) + " m\n\n" +
+        "INITIAL TRIM : " + I.trim.toFixed(3) + " m\n" +
+        "FINAL TRIM   : " + F.trim.toFixed(3) + " m\n\n" +
+        "TPC USED : " + F.hydro.tpc.toFixed(3) + "\n" +
+        "LCF USED : " + F.hydro.lcf.toFixed(3) + "\n" +
+        "MCT USED : " + F.hydro.mct.toFixed(2) + "\n" +
+        "VCB : " + F.hydro.vcb.toFixed(3) + "\n" +
+        "KML : " + F.hydro.kml.toFixed(2) + "\n" +
+        "KMT : " + F.hydro.kmt.toFixed(2);
 }
 
 /* EXPORT */
-function exportReport(){
-let text=document.getElementById("result").innerText+"\n\n"+document.getElementById("process").innerText;
-let blob=new Blob([text],{type:"text/plain"});
-let a=document.createElement("a");
-a.href=URL.createObjectURL(blob);
-a.download="DraftSurvey_Report.txt";
-a.click();
+function exportReport() {
+    let text =
+        document.getElementById("result").innerText +
+        "\n\n" +
+        document.getElementById("process").innerText;
+
+    let blob = new Blob([text], { type: "text/plain" });
+
+    let a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "DraftSurvey_Report.txt";
+    a.click();
 }
 
-function showAbout(){aboutBox.style.display="block";}
+function showAbout() {
+    aboutBox.style.display = "block";
+}
 </script>
 
 </body>
