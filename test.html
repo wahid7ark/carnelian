@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draft Survey Assistant Officer</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    background:#07131d;
+    font-family:Orbitron,Arial;
+    color:#d7f3ff;
+}
+header{
+    text-align:center;
+    padding:15px;
+    background:#0b2233;
+    box-shadow:0 0 15px #00e5ff55;
+}
+h1{margin:0;font-size:20px;letter-spacing:2px}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:15px;
+}
+
+.card{
+    background:#0d1f2e;
+    padding:15px;
+    margin:15px 0;
+    border-radius:14px;
+    box-shadow:0 0 20px #00d0ff22;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:10px;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    border-radius:8px;
+    border:none;
+    background:#06141e;
+    color:#fff;
+}
+
+button{
+    margin-top:12px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:12px;
+    font-size:15px;
+    background:#21d07a;
+    color:#001b0d;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.result{
+    font-size:18px;
+    text-align:center;
+    margin-top:10px;
+}
+
+footer{
+    text-align:center;
+    margin:30px 0 10px;
+    font-size:13px;
+    color:#9edfff;
+}
+footer span{color:#00ff88;}
+
+img{
+    width:100%;
+    border-radius:12px;
+    margin-top:10px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Draft Survey Assistant Officer</h1>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h3>Initial Survey</h3>
+<div class="grid">
+<input id="ifp" placeholder="Fwd Port">
+<input id="ifs" placeholder="Fwd Stbd">
+<input id="imp" placeholder="Mid Port">
+<input id="ims" placeholder="Mid Stbd">
+<input id="iap" placeholder="Aft Port">
+<input id="ias" placeholder="Aft Stbd">
+</div>
+<input id="densI" placeholder="Water Density (ex: 1.020)">
+</div>
+
+<div class="card">
+<h3>Final Survey</h3>
+<div class="grid">
+<input id="ffp" placeholder="Fwd Port">
+<input id="ffs" placeholder="Fwd Stbd">
+<input id="fmp" placeholder="Mid Port">
+<input id="fms" placeholder="Mid Stbd">
+<input id="fap" placeholder="Aft Port">
+<input id="fas" placeholder="Aft Stbd">
+</div>
+<input id="densF" placeholder="Water Density">
+</div>
+
+<div class="card">
+<button onclick="calculate()">CALCULATE CARGO</button>
+<div class="result" id="output">Waiting input...</div>
+<button onclick="exportTxt()">EXPORT RESULT</button>
+</div>
+
+<div class="card">
+<h3>Barge Reference</h3>
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Barge.jpg">
+</div>
+
+</div>
+
+<footer>
+coder: Mr. W (ARK DAN) <span>© <span id="year"></span></span>
+</footer>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4c9bdf6e6a.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+
+/* ================== MASUKKAN TABEL HIDROSTATIKMU DI SINI ================== */
+const hydroTable = [
+ // contoh:
+ // [draft, displacement, LCB, VCB, TPC, LCF, MCT, KML, KMT],
+ [2.50, 5000, 0, 2.1, 12.3, 0.1, 45, 5.2, 5.9],
+ [2.60, 5200, 0, 2.2, 12.6, 0.1, 46, 5.3, 6.0],
+];
+
+/* ================== ENGINE ================== */
+
+function mean(a,b){return (parseFloat(a)+parseFloat(b))/2;}
+
+function quarterMean(f,m,a){
+    return (f + a + 6*m)/8;
+}
+
+function interpolate(draft){
+    for(let i=0;i<hydroTable.length-1;i++){
+        let d1=hydroTable[i][0];
+        let d2=hydroTable[i+1][0];
+        if(draft>=d1 && draft<=d2){
+            let ratio=(draft-d1)/(d2-d1);
+            let result=[];
+            for(let c=0;c<hydroTable[i].length;c++){
+                let v1=hydroTable[i][c];
+                let v2=hydroTable[i+1][c];
+                result[c]=v1+(v2-v1)*ratio;
+            }
+            return result;
+        }
+    }
+    return null;
+}
+
+function survey(prefix){
+    let f=mean(document.getElementById(prefix+"fp").value,document.getElementById(prefix+"fs").value);
+    let m=mean(document.getElementById(prefix+"mp").value,document.getElementById(prefix+"ms").value);
+    let a=mean(document.getElementById(prefix+"ap").value,document.getElementById(prefix+"as").value);
+
+    let qmd=quarterMean(f,m,a);
+
+    let hydro=interpolate(qmd);
+    let disp=hydro[1];
+
+    let density=parseFloat(document.getElementById(prefix=="i"?"densI":"densF").value);
+    let corrected=disp*(density/1.025);
+
+    return corrected;
+}
+
+function calculate(){
+    let initial=survey("i");
+    let final=survey("f");
+    let cargo=final-initial;
+    document.getElementById("output").innerHTML=
+        "Initial Disp : "+initial.toFixed(2)+" MT<br>"+
+        "Final Disp : "+final.toFixed(2)+" MT<br><br>"+
+        "<b>CARGO LOADED : "+cargo.toFixed(2)+" MT</b>";
+}
+
+function exportTxt(){
+    let text=document.getElementById("output").innerText;
+    let blob=new Blob([text],{type:"text/plain"});
+    let a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);
+    a.download="DraftSurveyResult.txt";
+    a.click();
+}
+</script>
+
+</body>
+</html>
