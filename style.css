@@ -1,200 +1,158 @@
-/* ==========================================
-   BG ARK CARNELIAN
-   MOBILE FIRST SURVEY UI
-   LOCKED VERSION
-========================================== */
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Segoe UI, Arial, sans-serif;
+body {
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: linear-gradient(#03121c, #000814);
+    color: white;
+    text-align: center;
 }
 
-/* ================= BODY ================= */
-
-body{
-background:#0e1a22;
-color:#fff;
+h1 {
+    margin: 12px 0;
+    letter-spacing: 2px;
 }
 
-/* overlay tidak diperlukan di hp */
-.overlay{
-display:none;
+#barge {
+    width: 95%;
+    max-width: 720px;
+    border-radius: 14px;
+    box-shadow: 0 0 25px #00eaff55;
 }
 
-.container{
-max-width:720px;
-margin:auto;
-padding:14px;
+.container {
+    display: grid;
+    gap: 14px;
+    padding: 14px;
 }
 
-/* ================= HEADER ================= */
-
-header{
-text-align:center;
-margin-bottom:18px;
+.card {
+    background: #021019;
+    padding: 15px;
+    border-radius: 14px;
+    box-shadow: 0 0 15px #00ffd533 inset;
 }
 
-header h1{
-font-size:26px;
-letter-spacing:1px;
-color:#4db8ff;
+h4 {
+    margin: 8px 0 4px 0;
+    color: #7fd3ff;
 }
 
-header h3{
-font-size:14px;
-font-weight:400;
-color:#cfd8dc;
-margin-top:4px;
+.row {
+    display: flex;
+    gap: 8px;
 }
 
-header p{
-font-size:12px;
-color:#90a4ae;
+.row input {
+    width: 100%;
 }
 
-/* ================= PHOTO ================= */
-
-.photo img{
-width:100%;
-height:180px;
-object-fit:cover;
-border-radius:10px;
-margin-bottom:12px;
+input {
+    width: 92%;
+    padding: 11px;
+    margin: 6px;
+    border-radius: 8px;
+    border: none;
+    background: #000c14;
+    color: white;
+    text-align: center;
+    font-size: 15px;
 }
 
-/* ================= SECTION CARD ================= */
-
-section{
-background:#162630;
-padding:14px;
-margin-bottom:14px;
-border-radius:12px;
-box-shadow:0 4px 14px rgba(0,0,0,0.35);
+button {
+    padding: 12px;
+    margin: 8px;
+    border: none;
+    border-radius: 12px;
+    background: #0a2a3a;
+    color: #9fe9ff;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: 0 0 10px #00eaff33 inset;
+    cursor: pointer;
 }
 
-section h2{
-font-size:18px;
-margin-bottom:12px;
-color:#4db8ff;
+#exportBtn {
+    background: #00ff88;
+    color: black;
 }
 
-/* ================= SURVEY GRID ================= */
-
-.survey{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+#result {
+    font-size: 21px;
+    color: #00ffd5;
+    margin-top: 10px;
 }
 
-/* hp kecil -> jadi 1 kolom */
-@media(max-width:480px){
-.survey{
-grid-template-columns:1fr;
-}
-}
-
-/* ================= FORM ================= */
-
-.form-row{
-display:flex;
-flex-direction:column;
+#process {
+    text-align: left;
+    white-space: pre-line;
+    font-size: 13px;
+    color: #bffcf3;
+    margin-top: 12px;
 }
 
-label{
-font-size:12px;
-color:#b0bec5;
-margin-bottom:4px;
+/* ABOUT MODAL */
+#aboutBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000c;
+    display: none;
 }
 
-/* INPUT SUPER RAMAH HP */
-
-input{
-width:100%;
-padding:14px;
-font-size:18px;          /* penting: angka besar */
-border:none;
-border-radius:10px;
-background:#0f1d25;
-color:#fff;
+#aboutContent {
+    background: #021019;
+    margin: 15% auto;
+    padding: 20px;
+    width: 85%;
+    border-radius: 12px;
+    position: relative;
 }
 
-/* fokus saat surveyor mengetik */
-
-input:focus{
-outline:none;
-background:#122a36;
-box-shadow:0 0 0 2px #4db8ff;
+#closeAbout {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    font-size: 20px;
+    color: #7feaff;
+    cursor: pointer;
 }
 
-/* hilangkan panah number di android */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button{
--webkit-appearance:none;
-margin:0;
+footer {
+    padding: 12px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 }
 
-/* ================= CONSTANTS ================= */
-
-.constants{
-display:grid;
-grid-template-columns:1fr;
-gap:10px;
+.coder {
+    color: #7feaff;
+    font-size: 12px;
+    margin-right: 6px;
 }
 
-/* ================= BUTTON ================= */
-
-button{
-width:100%;
-padding:18px;
-margin-top:10px;
-font-size:20px;
-font-weight:bold;
-background:#2fa4ff;
-border:none;
-border-radius:12px;
-color:#fff;
-letter-spacing:1px;
+.copy {
+    color: #00ff7b;
 }
 
-button:active{
-transform:scale(0.97);
-background:#1d8fe0;
+.year {
+    color: #999;
 }
 
-/* ================= RESULTS ================= */
-
-.results{
-text-align:center;
+.aboutMini {
+    padding: 3px 10px;
+    font-size: 11px;
+    background: transparent;
+    border: 1px solid #00eaff;
+    color: #7feaff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
-#output{
-margin-top:12px;
-background:#000;
-padding:16px;
-border-radius:12px;
-font-size:16px;
-line-height:1.7;
-}
-
-#output strong{
-font-size:22px;
-color:#4db8ff;
-display:block;
-margin-top:12px;
-}
-
-/* ================= DESKTOP (BONUS) ================= */
-
-@media(min-width:900px){
-
-.container{
-max-width:900px;
-}
-
-.photo img{
-height:260px;
-}
-
+.material-icons {
+    vertical-align: middle;
 }
