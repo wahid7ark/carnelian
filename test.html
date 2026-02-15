@@ -1,308 +1,264 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Draft Survey Assistant Officer</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
-
-<style>
-body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(#03121c, #000814);
-    color: white;
-    text-align: center;
+<title>Draft Survey Assistant Officer</title><link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet"><style>
+body{
+margin:0;
+font-family:'Orbitron',sans-serif;
+background:linear-gradient(#03121c,#000814);
+color:white;
+text-align:center;
 }
 
 /* HEADER */
-h1 {
-    margin: 12px 0;
-    letter-spacing: 2px;
+h1{margin:12px 0;letter-spacing:2px}
+
+/* PHOTO */
+#barge{
+width:95%;
+max-width:720px;
+border-radius:14px;
+box-shadow:0 0 25px #00eaff55;
 }
 
-/* BARGE PHOTO */
-#barge {
-    width: 95%;
-    max-width: 720px;
-    border-radius: 14px;
-    box-shadow: 0 0 25px #00eaff55;
+.container{
+display:grid;
+gap:14px;
+padding:14px;
 }
 
-/* LAYOUT */
-.container {
-    display: grid;
-    gap: 14px;
-    padding: 14px;
+.card{
+background:#021019;
+padding:15px;
+border-radius:14px;
+box-shadow:0 0 15px #00ffd533 inset;
 }
 
-.card {
-    background: #021019;
-    padding: 15px;
-    border-radius: 14px;
-    box-shadow: 0 0 15px #00ffd533 inset;
+h4{margin:8px 0 4px 0;color:#7fd3ff}
+
+.row{
+display:flex;
+gap:8px;
 }
 
-input {
-    width: 92%;
-    padding: 11px;
-    margin: 6px;
-    border-radius: 8px;
-    border: none;
-    background: #000c14;
-    color: white;
-    text-align: center;
-    font-size: 15px;
+.row input{width:100%;}
+
+input{
+width:92%;
+padding:11px;
+margin:6px;
+border-radius:8px;
+border:none;
+background:#000c14;
+color:white;
+text-align:center;
+font-size:15px;
 }
 
-/* BUTTON */
-button {
-    padding: 13px;
-    margin: 8px;
-    border: none;
-    border-radius: 12px;
-    background: #90ffb0;
-    color: black;
-    font-weight: bold;
-    font-size: 15px;
+/* BUTTONS */
+button{
+padding:12px;
+margin:8px;
+border:none;
+border-radius:12px;
+background:#0a2a3a;
+color:#9fe9ff;
+font-weight:bold;
+font-size:15px;
+box-shadow:0 0 10px #00eaff33 inset;
+}
+
+#exportBtn{
+background:#00ff88;
+color:black;
 }
 
 /* RESULT */
-#result {
-    font-size: 21px;
-    color: #00ffd5;
-    margin-top: 10px;
+#result{
+font-size:21px;
+color:#00ffd5;
+margin-top:10px;
 }
 
-/* PROCESS */
-#process {
-    text-align: left;
-    white-space: pre-line;
-    font-size: 13px;
-    color: #bffcf3;
-    margin-top: 12px;
+#process{
+text-align:left;
+white-space:pre-line;
+font-size:13px;
+color:#bffcf3;
+margin-top:12px;
 }
 
-/* ABOUT */
-#aboutBox {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #000c;
-    display: none;
+/* ABOUT MODAL */
+#aboutBox{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:#000c;
+display:none;
 }
 
-#aboutContent {
-    background: #021019;
-    margin: 15% auto;
-    padding: 20px;
-    width: 85%;
-    border-radius: 12px;
+#aboutContent{
+background:#021019;
+margin:15% auto;
+padding:20px;
+width:85%;
+border-radius:12px;
 }
 
 /* FOOTER */
-footer {
-    padding: 12px;
-    font-size: 12px;
+footer{
+padding:12px;
+font-size:12px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:8px;
 }
 
-.green {
-    color: #00ff7b;
+.copy{color:#00ff7b;}
+.year{color:#999;}
+
+.aboutMini{
+padding:3px 10px;
+font-size:11px;
+background:transparent;
+border:1px solid #00eaff;
+color:#7feaff;
+border-radius:6px;
 }
-</style>
-</head>
+</style></head><body><audio autoplay loop>
+<source src="https://raw.githubusercontent.com/wahid7ark/assets/main/music.mp3" type="audio/mpeg">
+</audio><h1>BG ARK CARNELIAN</h1>
+<img id="barge" src="https://raw.githubusercontent.com/wahid7ark/assets/main/barge.jpg"><div class="container"><div class="card">
+<h3>INITIAL SURVEY</h3><h4>Forward</h4>
+<div class="row">
+<input id="ifp" placeholder="Port (m)">
+<input id="ifs" placeholder="Stbd (m)">
+</div><h4>Midship</h4>
+<div class="row">
+<input id="imp" placeholder="Port (m)">
+<input id="ims" placeholder="Stbd (m)">
+</div><h4>Aft</h4>
+<div class="row">
+<input id="iap" placeholder="Port (m)">
+<input id="ias" placeholder="Stbd (m)">
+</div><h4>Density</h4>
+<input id="densI" value="1.025" placeholder="1.025">
+</div><div class="card">
+<h3>FINAL SURVEY</h3><h4>Forward</h4>
+<div class="row">
+<input id="ffp" placeholder="Port (m)">
+<input id="ffs" placeholder="Stbd (m)">
+</div><h4>Midship</h4>
+<div class="row">
+<input id="fmp" placeholder="Port (m)">
+<input id="fms" placeholder="Stbd (m)">
+</div><h4>Aft</h4>
+<div class="row">
+<input id="fap" placeholder="Port (m)">
+<input id="fas" placeholder="Stbd (m)">
+</div><h4>Density</h4>
+<input id="densF" value="1.025" placeholder="1.025">
+</div><button onclick="calculate()">CALCULATE</button>
+<button id="exportBtn" onclick="exportReport()">EXPORT REPORT</button>
 
-<body>
-
-<!-- AUTO MUSIC -->
-<audio autoplay loop>
-    <source src="https://raw.githubusercontent.com/wahid7ark/assets/main/music.mp3" type="audio/mpeg">
-</audio>
-
-<h1>BG ARK CARNELIAN</h1>
-
-<img id="barge" src="https://raw.githubusercontent.com/wahid7ark/assets/main/barge.jpg">
-
-<div class="container">
-
-    <div class="card">
-        <h3>INITIAL SURVEY</h3>
-        <input id="ifp" placeholder="Forward Port">
-        <input id="ifs" placeholder="Forward Starboard">
-        <input id="imp" placeholder="Mid Port">
-        <input id="ims" placeholder="Mid Starboard">
-        <input id="iap" placeholder="Aft Port">
-        <input id="ias" placeholder="Aft Starboard">
-        <input id="densI" value="1.025" placeholder="Density">
-    </div>
-
-    <div class="card">
-        <h3>FINAL SURVEY</h3>
-        <input id="ffp" placeholder="Forward Port">
-        <input id="ffs" placeholder="Forward Starboard">
-        <input id="fmp" placeholder="Mid Port">
-        <input id="fms" placeholder="Mid Starboard">
-        <input id="fap" placeholder="Aft Port">
-        <input id="fas" placeholder="Aft Starboard">
-        <input id="densF" value="1.025" placeholder="Density">
-    </div>
-
-    <button onclick="calculate()">CALCULATE</button>
-    <button onclick="exportReport()">EXPORT REPORT</button>
-    <button onclick="showAbout()">ABOUT</button>
-
-    <div class="card">
-        <div id="result">Awaiting Calculation...</div>
-        <div id="process"></div>
-    </div>
-
+<div class="card">
+<div id="result">Awaiting Calculation...</div>
+<div id="process"></div>
+</div></div><div id="aboutBox">
+<div id="aboutContent">
+<h3>Draft Survey Assistant Officer</h3>
+<p>Barge Draft Survey using Quarter Mean Draft, LCF correction, Trim correction, Density correction and Hydrostatic interpolation.</p>
+<p><a href="https://github.com/wahid7ark" target="_blank">Project Page</a></p>
+<button onclick="aboutBox.style.display='none'">Close</button>
 </div>
+</div><footer>
+<span class="copy">©</span><span class="year" id="year"></span>
+<button class="aboutMini" onclick="showAbout()">ABOUT</button>
+</footer><script>
+document.getElementById("year").innerText=new Date().getFullYear();
 
-<div id="aboutBox">
-    <div id="aboutContent">
-        <h3>Draft Survey Assistant Officer v1.1</h3>
-        <p>
-            Barge Draft Survey Calculator using Quarter Mean Draft, LCF correction,
-            Trim correction (MCT 1cm), Density correction and Hydrostatic interpolation.
-        </p>
-        <button onclick="aboutBox.style.display='none'">Close</button>
-    </div>
-</div>
+/* ===== PASTE HYDRO TABLE HERE ===== */
+const hydroTable = [];
 
-<footer>
-    coder: Mr. W (ARK DAN)
-    <span class="green">©<span id="year"></span></span>
-</footer>
-
-<script>
-document.getElementById("year").innerText = new Date().getFullYear();
-
-/* ========= PASTE YOUR HYDROSTATIC TABLE HERE ========= */
-
+/* number parser (0,77 or 0.77) */
+function num(x){return parseFloat(String(x).replace(",",".")||0);}
 
 /* INTERPOLATION */
-function interpolate(draft) {
-    for (let i = 0; i < hydroTable.length - 1; i++) {
-
-        let a = hydroTable[i];
-        let b = hydroTable[i + 1];
-
-        if (draft >= a.draft && draft <= b.draft) {
-
-            let r = (draft - a.draft) / (b.draft - a.draft);
-
-            return {
-                disp: a.disp + (b.disp - a.disp) * r,
-                tpc: a.tpc + (b.tpc - a.tpc) * r,
-                lcf: a.lcf + (b.lcf - a.lcf) * r,
-                mct: a.degTrim + (b.degTrim - a.degTrim) * r,
-                vcb: a.vcb + (b.vcb - a.vcb) * r,
-                kml: a.kml + (b.kml - a.kml) * r,
-                kmt: a.kmt + (b.kmt - a.kmt) * r
-            };
-        }
-    }
+function interpolate(draft){
+for(let i=0;i<hydroTable.length-1;i++){
+let a=hydroTable[i];
+let b=hydroTable[i+1];
+if(draft>=a.draft && draft<=b.draft){
+let r=(draft-a.draft)/(b.draft-a.draft);
+return{
+disp:a.disp+(b.disp-a.disp)*r,
+tpc:a.tpc+(b.tpc-a.tpc)*r,
+lcf:a.lcf+(b.lcf-a.lcf)*r,
+mct:a.degTrim+(b.degTrim-a.degTrim)*r,
+vcb:a.vcb+(b.vcb-a.vcb)*r,
+kml:a.kml+(b.kml-a.kml)*r,
+kmt:a.kmt+(b.kmt-a.kmt)*r
+};
+}}
+return null;
 }
 
-/* BASIC FORMULAS */
-function mean(p, s) {
-    return (parseFloat(p) + parseFloat(s)) / 2;
+function mean(p,s){return (num(p)+num(s))/2;}
+function qmd(f,m,a){return (f+a+6*m)/8;}
+
+function getSurvey(prefix){
+
+let F=mean(document.getElementById(prefix+"fp").value,document.getElementById(prefix+"fs").value);
+let M=mean(document.getElementById(prefix+"mp").value,document.getElementById(prefix+"ms").value);
+let A=mean(document.getElementById(prefix+"ap").value,document.getElementById(prefix+"as").value);
+
+let Q=qmd(F,M,A);
+let hydro=interpolate(Q);
+if(!hydro){alert("Draft outside hydrostatic table");return;}
+
+let trim=A-F;
+let LBP=92.0;
+
+let draftLCF=Q+(trim*hydro.lcf/LBP);
+let hydroLCF=interpolate(draftLCF);
+
+let trimCorr=(trim*100*hydroLCF.tpc*hydroLCF.lcf)/hydroLCF.mct;
+let dispCorrected=hydroLCF.disp+trimCorr;
+
+let density=num(document.getElementById(prefix=="i"?"densI":"densF").value);
+dispCorrected*=density/1.025;
+
+return{disp:dispCorrected,draft:Q,trim:trim,hydro:hydroLCF};
 }
 
-function qmd(f, m, a) {
-    return (f + a + 6 * m) / 8;
+function calculate(){
+let I=getSurvey("i");
+let F=getSurvey("f");
+if(!I||!F)return;
+
+let cargo=F.disp-I.disp;
+
+document.getElementById("result").innerHTML="<b>CARGO WEIGHT : "+cargo.toFixed(2)+" MT</b>";
+
+document.getElementById("process").innerText=
+"INITIAL DISPLACEMENT : "+I.disp.toFixed(2)+" MT\n"+
+"FINAL DISPLACEMENT   : "+F.disp.toFixed(2)+" MT\n\n"+
+"INITIAL DRAFT : "+I.draft.toFixed(3)+" m\n"+
+"FINAL DRAFT   : "+F.draft.toFixed(3)+" m\n\n"+
+"TPC : "+F.hydro.tpc.toFixed(3)+"\nLCF : "+F.hydro.lcf.toFixed(3)+"\nMCT : "+F.hydro.mct.toFixed(2)+"\nVCB : "+F.hydro.vcb.toFixed(3)+"\nKML : "+F.hydro.kml.toFixed(2)+"\nKMT : "+F.hydro.kmt.toFixed(2);
 }
 
-/* SURVEY CORE */
-function getSurvey(prefix) {
-
-    let F = mean(
-        document.getElementById(prefix + "fp").value,
-        document.getElementById(prefix + "fs").value
-    );
-
-    let M = mean(
-        document.getElementById(prefix + "mp").value,
-        document.getElementById(prefix + "ms").value
-    );
-
-    let A = mean(
-        document.getElementById(prefix + "ap").value,
-        document.getElementById(prefix + "as").value
-    );
-
-    let Q = qmd(F, M, A);
-    let hydro = interpolate(Q);
-
-    let trim = A - F;
-    let LBP = 92.0;
-
-    let draftLCF = Q + (trim * hydro.lcf / LBP);
-    let hydroLCF = interpolate(draftLCF);
-
-    let trimCorr = (trim * 100 * hydroLCF.tpc * hydroLCF.lcf) / hydroLCF.mct;
-
-    let dispCorrected = hydroLCF.disp + trimCorr;
-
-    let density = parseFloat(document.getElementById(prefix == "i" ? "densI" : "densF").value);
-    dispCorrected *= density / 1.025;
-
-    return {
-        disp: dispCorrected,
-        draft: Q,
-        trim: trim,
-        hydro: hydroLCF
-    };
+function exportReport(){
+let text=document.getElementById("result").innerText+"\n\n"+document.getElementById("process").innerText;
+let blob=new Blob([text],{type:"text/plain"});
+let a=document.createElement("a");
+a.href=URL.createObjectURL(blob);
+a.download="DraftSurvey_Report.txt";
+a.click();
 }
 
-/* FINAL CALCULATION */
-function calculate() {
-
-    let I = getSurvey("i");
-    let F = getSurvey("f");
-
-    let cargo = F.disp - I.disp;
-
-    document.getElementById("result").innerHTML =
-        "<b>CARGO WEIGHT : " + cargo.toFixed(2) + " MT</b>";
-
-    document.getElementById("process").innerText =
-        "INITIAL DISPLACEMENT : " + I.disp.toFixed(2) + " MT\n" +
-        "FINAL DISPLACEMENT   : " + F.disp.toFixed(2) + " MT\n\n" +
-        "INITIAL DRAFT : " + I.draft.toFixed(3) + " m\n" +
-        "FINAL DRAFT   : " + F.draft.toFixed(3) + " m\n\n" +
-        "INITIAL TRIM : " + I.trim.toFixed(3) + " m\n" +
-        "FINAL TRIM   : " + F.trim.toFixed(3) + " m\n\n" +
-        "TPC USED : " + F.hydro.tpc.toFixed(3) + "\n" +
-        "LCF USED : " + F.hydro.lcf.toFixed(3) + "\n" +
-        "MCT USED : " + F.hydro.mct.toFixed(2) + "\n" +
-        "VCB : " + F.hydro.vcb.toFixed(3) + "\n" +
-        "KML : " + F.hydro.kml.toFixed(2) + "\n" +
-        "KMT : " + F.hydro.kmt.toFixed(2);
-}
-
-/* EXPORT */
-function exportReport() {
-    let text =
-        document.getElementById("result").innerText +
-        "\n\n" +
-        document.getElementById("process").innerText;
-
-    let blob = new Blob([text], { type: "text/plain" });
-
-    let a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = "DraftSurvey_Report.txt";
-    a.click();
-}
-
-function showAbout() {
-    aboutBox.style.display = "block";
-}
-</script>
-
-</body>
+function showAbout(){aboutBox.style.display="block";}
+</script></body>
 </html>
